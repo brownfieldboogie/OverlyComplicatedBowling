@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverlyComplicatedBowling.Infrastructure", "src\OverlyComplicatedBowling.Infrastructure\OverlyComplicatedBowling.Infrastructure.csproj", "{2DC08F63-641E-4A68-8FFC-67018E49F921}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverlyComplicatedBowling.Infrastructure.Tests", "tests\OverlyComplicatedBowling.Infrastructure.Tests\OverlyComplicatedBowling.Infrastructure.Tests.csproj", "{F7F237D5-254B-4C4D-A2CC-104B243E6E40}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DC08F63-641E-4A68-8FFC-67018E49F921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DC08F63-641E-4A68-8FFC-67018E49F921}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DC08F63-641E-4A68-8FFC-67018E49F921}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DC08F63-641E-4A68-8FFC-67018E49F921}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7F237D5-254B-4C4D-A2CC-104B243E6E40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7F237D5-254B-4C4D-A2CC-104B243E6E40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7F237D5-254B-4C4D-A2CC-104B243E6E40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7F237D5-254B-4C4D-A2CC-104B243E6E40}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
