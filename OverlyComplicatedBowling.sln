@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverlyComplicatedBowling.Infrastructure", "src\OverlyComplicatedBowling.Infrastructure\OverlyComplicatedBowling.Infrastructure.csproj", "{2DC08F63-641E-4A68-8FFC-67018E49F921}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverlyComplicatedBowling.Infrastructure", "src\OverlyComplicatedBowling.Infrastructure\OverlyComplicatedBowling.Infrastructure.csproj", "{2DC08F63-641E-4A68-8FFC-67018E49F921}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverlyComplicatedBowling.Infrastructure.Tests", "tests\OverlyComplicatedBowling.Infrastructure.Tests\OverlyComplicatedBowling.Infrastructure.Tests.csproj", "{F7F237D5-254B-4C4D-A2CC-104B243E6E40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverlyComplicatedBowling.Infrastructure.Tests", "tests\OverlyComplicatedBowling.Infrastructure.Tests\OverlyComplicatedBowling.Infrastructure.Tests.csproj", "{F7F237D5-254B-4C4D-A2CC-104B243E6E40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverlyComplicatedBowling.Domain", "src\OverlyComplicatedBowling.Domain\OverlyComplicatedBowling.Domain.csproj", "{665671B6-C497-4142-9102-BD01B6BAC776}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverlyComplicatedBowling.Domain.Tests", "tests\OverlyComplicatedBowling.Domain.Tests\OverlyComplicatedBowling.Domain.Tests.csproj", "{EC9E4150-B16B-4D60-9D08-8F91BE10A521}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{F7F237D5-254B-4C4D-A2CC-104B243E6E40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7F237D5-254B-4C4D-A2CC-104B243E6E40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7F237D5-254B-4C4D-A2CC-104B243E6E40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{665671B6-C497-4142-9102-BD01B6BAC776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{665671B6-C497-4142-9102-BD01B6BAC776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{665671B6-C497-4142-9102-BD01B6BAC776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{665671B6-C497-4142-9102-BD01B6BAC776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC9E4150-B16B-4D60-9D08-8F91BE10A521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC9E4150-B16B-4D60-9D08-8F91BE10A521}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC9E4150-B16B-4D60-9D08-8F91BE10A521}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC9E4150-B16B-4D60-9D08-8F91BE10A521}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
