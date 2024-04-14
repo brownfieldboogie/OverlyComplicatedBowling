@@ -2,7 +2,7 @@
 {
     public class FinalFrame : Frame
     {
-        public static FinalFrame Create()
+        internal static FinalFrame Create()
         {
             return new FinalFrame
             {

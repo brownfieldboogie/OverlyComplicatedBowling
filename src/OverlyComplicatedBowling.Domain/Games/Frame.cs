@@ -2,6 +2,8 @@
 {
     public class Frame
     {
+        protected Frame() { }
+
         public virtual SortedDictionary<int, Roll> Rolls { get; protected set; }
         public virtual int MaxRolls { get; protected set; }
         public virtual int Score { get; protected set; }

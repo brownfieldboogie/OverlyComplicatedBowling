@@ -6,4 +6,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="OverlyComplicatedBowling.Domain.Tests"/>
+  </ItemGroup>
 </Project>

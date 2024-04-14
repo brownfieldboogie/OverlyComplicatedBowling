@@ -2,7 +2,7 @@
 {
     public class NormalFrame : Frame
     {
-        public static NormalFrame Create()
+        internal static NormalFrame Create()
         {
             return new NormalFrame
             {
