@@ -8,7 +8,7 @@
         {
             _httpClient = httpClient;
 
-            _httpClient.BaseAddress = new Uri("http://www.randomnumberapi.com/api/v1.0/random?"); //move to appsettings?
+            _httpClient.BaseAddress = new Uri("http://www.randomnumberapi.com/api/v1.0/"); //move to appsettings?
         }
 
         public async Task<int> GetRollResultAsync(int remainingPins)
@@ -29,7 +29,7 @@
                 new KeyValuePair<string, string>("count", "1")
             };
 
-            return string.Join("&", queryParameters.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            return "random?" + string.Join("&", queryParameters.Select(kvp => $"{kvp.Key}={kvp.Value}"));
         }
 
         private int ConvertResult(string result)
