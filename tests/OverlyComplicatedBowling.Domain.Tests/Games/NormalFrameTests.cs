@@ -43,6 +43,55 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
         }
 
         [TestMethod]
+        public void AddRoll_CompleteFrameOnStrike()
+        {
+            //Arrange
+            var frame = NormalFrame.Create();
+            var rollOne = new Roll(10, true, false);
+
+            //Act
+            frame.AddRoll(rollOne);
+
+            //Assert
+            frame.Rolls.Should().HaveCount(1);
+            frame.Completed.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void AddRoll_CompleteFrameOnSpareAndTwoRolls()
+        {
+            //Arrange
+            var frame = NormalFrame.Create();
+            var rollOne = new Roll(9, false, false);
+            var rollTwo = new Roll(1, false, true);
+
+            //Act
+            frame.AddRoll(rollOne);
+            frame.AddRoll(rollTwo);
+
+            //Assert
+            frame.Rolls.Should().HaveCount(2);
+            frame.Completed.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void AddRoll_CompleteFrameAfterTwoRolls()
+        {
+            //Arrange
+            var frame = NormalFrame.Create();
+            var rollOne = new Roll(1, false, false);
+            var rollTwo = new Roll(1, false, false);
+
+            //Act
+            frame.AddRoll(rollOne);
+            frame.AddRoll(rollTwo);
+
+            //Assert
+            frame.Rolls.Should().HaveCount(2);
+            frame.Completed.Should().BeTrue();
+        }
+
+        [TestMethod]
         public void UpdateScore_Rolls_SumRollsAsScore()
         {
             //Arrange
