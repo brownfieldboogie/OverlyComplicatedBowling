@@ -11,8 +11,8 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
         {
             //Arrange
             var frame = NormalFrame.Create();
-            var rollOne = new Roll(3, false, false);
-            var rollTwo = new Roll(4, false, false);
+            var rollOne = 3;
+            var rollTwo = 4;
 
             //Act
             frame.AddRoll(rollOne);
@@ -20,8 +20,8 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
 
             //Assert
             frame.Rolls.Should().HaveCount(2);
-            frame.Rolls.First().Value.KnockedPins.Should().Be(rollOne.KnockedPins);
-            frame.Rolls.Last().Value.KnockedPins.Should().Be(rollTwo.KnockedPins);
+            frame.Rolls.First().Value.KnockedPins.Should().Be(rollOne);
+            frame.Rolls.Last().Value.KnockedPins.Should().Be(rollTwo);
         }
 
         [TestMethod]
@@ -29,9 +29,9 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
         {
             //Arrange
             var frame = NormalFrame.Create();
-            var rollOne = new Roll(3, false, false);
-            var rollTwo = new Roll(4, false, false);
-            var rollThree = new Roll(1, false, false);
+            var rollOne = 3;
+            var rollTwo = 4;
+            var rollThree = 1;
 
             //Act
             frame.AddRoll(rollOne);
@@ -47,7 +47,7 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
         {
             //Arrange
             var frame = NormalFrame.Create();
-            var rollOne = new Roll(10, true, false);
+            var rollOne = 10;
 
             //Act
             frame.AddRoll(rollOne);
@@ -62,8 +62,8 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
         {
             //Arrange
             var frame = NormalFrame.Create();
-            var rollOne = new Roll(9, false, false);
-            var rollTwo = new Roll(1, false, true);
+            var rollOne = 9;
+            var rollTwo = 1;
 
             //Act
             frame.AddRoll(rollOne);
@@ -79,8 +79,8 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
         {
             //Arrange
             var frame = NormalFrame.Create();
-            var rollOne = new Roll(1, false, false);
-            var rollTwo = new Roll(1, false, false);
+            var rollOne = 1;
+            var rollTwo = 1;
 
             //Act
             frame.AddRoll(rollOne);
@@ -92,12 +92,28 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
         }
 
         [TestMethod]
+        public void AddRoll_RemainingPinsShouldBe10MinusRolls()
+        {
+            //Arrange
+            var frame = NormalFrame.Create();
+            var rollOne = 1;
+            var rollTwo = 1;
+
+            //Act
+            frame.AddRoll(rollOne);
+            frame.AddRoll(rollTwo);
+
+            //Assert
+            frame.RemainingPins.Should().Be(10 - rollOne - rollTwo);
+        }
+
+        [TestMethod]
         public void UpdateScore_Rolls_SumRollsAsScore()
         {
             //Arrange
             var frame = NormalFrame.Create();
-            var rollOne = new Roll(3, false, false);
-            var rollTwo = new Roll(4, false, false);
+            var rollOne = 3;
+            var rollTwo = 4;
 
             //Act
             frame.AddRoll(rollOne);
@@ -107,7 +123,7 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
             //Assert
             frame.Rolls.Should().HaveCount(2);
             frame.Scored.Should().BeTrue();
-            frame.Score.Should().Be(rollOne.KnockedPins + rollTwo.KnockedPins);
+            frame.Score.Should().Be(rollOne + rollTwo);
         }
 
         [TestMethod]
@@ -115,8 +131,8 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
         {
             //Arrange
             var frame = NormalFrame.Create();
-            var rollOne = new Roll(5, false, false);
-            var rollTwo = new Roll(5, false, true);
+            var rollOne = 5;
+            var rollTwo = 5;
             var subsequentRoll = new Roll(5, false, false);
 
             //Act
@@ -127,7 +143,7 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
             //Assert
             frame.Rolls.Should().HaveCount(2);
             frame.Scored.Should().BeTrue();
-            frame.Score.Should().Be(rollOne.KnockedPins + rollTwo.KnockedPins + subsequentRoll.KnockedPins);
+            frame.Score.Should().Be(rollOne + rollTwo + subsequentRoll.KnockedPins);
         }
 
         [TestMethod]
@@ -135,7 +151,7 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
         {
             //Arrange
             var frame = NormalFrame.Create();
-            var rollOne = new Roll(10, true, false);
+            var rollOne = 10;
             var subsequentRollOne = new Roll(5, false, false);
             var subsequentRollTwo = new Roll(1, false, false);
 
@@ -146,7 +162,7 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
             //Assert
             frame.Rolls.Should().HaveCount(1);
             frame.Scored.Should().BeTrue();
-            frame.Score.Should().Be(rollOne.KnockedPins + subsequentRollOne.KnockedPins + subsequentRollTwo.KnockedPins);
+            frame.Score.Should().Be(rollOne + subsequentRollOne.KnockedPins + subsequentRollTwo.KnockedPins);
         }
     }
 }

@@ -21,5 +21,18 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
             game.Frames.Values.Should().AllSatisfy(f => f.Score.Should().Be(0));
             game.Frames.Values.Should().AllSatisfy(f => f.Rolls.Values.Should().BeEmpty());
         }
+
+        [TestMethod]
+        public void GetRemainingPinsOnActiveFrame_ReturnRemainingPins()
+        {
+            //Arrange
+            var game = Game.Start();
+
+            //Act
+            var remainingPins = game.GetRemainingPinsOnActiveFrame();
+
+            //Assert
+            remainingPins.Should().Be(10);
+        }
     }
 }

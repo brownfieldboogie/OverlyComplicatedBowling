@@ -10,21 +10,26 @@
                 MaxRolls = 2,
                 Score = 0,
                 Scored = false,
-                Completed = false
+                Completed = false,
+                RemainingPins = 10
             };
         }
 
-        public override void AddRoll(Roll roll)
+        public override void AddRoll(int knockedPins)
         {
             if (Completed) return;
 
-            Rolls.Add(Rolls.Count + 1, roll);
+            RemainingPins -= knockedPins;
 
-            if (roll.IsStrike ||
-                (roll.IsSpare && Rolls.Count == 2) ||
-                Rolls.Count == MaxRolls)
+            if (Rolls.Count == 0)
+            {
+                Completed = RemainingPins == 0;
+                Rolls.Add(1, new Roll(knockedPins, RemainingPins == 0, false));
+            }
+            else if (Rolls.Count == 1)
             {
                 Completed = true;
+                Rolls.Add(2, new Roll(knockedPins, false, RemainingPins == 0));
             }
         }
 

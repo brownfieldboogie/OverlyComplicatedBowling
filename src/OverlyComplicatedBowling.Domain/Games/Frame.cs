@@ -9,8 +9,9 @@
         public virtual int Score { get; protected set; }
         public virtual bool Scored { get; protected set; }
         public virtual bool Completed { get; protected set; }
+        public virtual int RemainingPins { get; protected set; }
 
-        public virtual void AddRoll(Roll roll) { }
+        public virtual void AddRoll(int knockedPins) { }
         public virtual void UpdateScore(Roll[]? subsequentRolls = null) { }
     }
 }
