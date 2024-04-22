@@ -6,14 +6,14 @@ namespace OverlyComplicatedBowling.Infrastructure.Tests.ExternalServices
     [TestClass]
     public class BowlingRollGeneratorTests
     {
-        private BowlingRollGenerator _rollGenerator;
+        private BowlingRollWebservice _rollGenerator;
 
         [TestInitialize]
         public void Initialize()
         {
             var httpClient = new HttpClient();
 
-            _rollGenerator = new BowlingRollGenerator(httpClient);
+            _rollGenerator = new BowlingRollWebservice(httpClient);
         }
 
         [TestMethod]

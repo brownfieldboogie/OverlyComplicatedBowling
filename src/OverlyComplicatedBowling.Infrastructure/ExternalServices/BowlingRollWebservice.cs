@@ -1,10 +1,12 @@
-﻿namespace OverlyComplicatedBowling.Infrastructure.Scraping
+﻿using OverlyComplicatedBowling.Application.Abstractions;
+
+namespace OverlyComplicatedBowling.Infrastructure.Scraping
 {
-    public class BowlingRollGenerator
+    public class BowlingRollWebservice : IBowlingRollWebservice
     {
         private HttpClient _httpClient { get; set; }
 
-        public BowlingRollGenerator(HttpClient httpClient)
+        public BowlingRollWebservice(HttpClient httpClient)
         {
             _httpClient = httpClient;
 
