@@ -37,17 +37,17 @@
         {
             if (Scored || !Completed) return;
 
-            if (Rolls.First().Value.IsStrike && subsequentRolls?.Length == 2)
+            if (Rolls.First().Value.IsStrike && subsequentRolls?.Length >= 2)
             {
                 Score = Rolls.Sum(r => r.Value.KnockedPins) + subsequentRolls.Sum(r => r.KnockedPins);
                 Scored = true;
             }
-            else if (Rolls.Last().Value.IsSpare && subsequentRolls?.Length == 1)
+            else if (Rolls.Last().Value.IsSpare && subsequentRolls?.Length >= 1)
             {
                 Score = Rolls.Sum(r => r.Value.KnockedPins) + subsequentRolls.Sum(r => r.KnockedPins);
                 Scored = true;
             }
-            else
+            else if (!Rolls.Any(r => r.Value.IsStrike || r.Value.IsSpare))
             {
                 Score = Rolls.Sum(r => r.Value.KnockedPins);
                 Scored = true;

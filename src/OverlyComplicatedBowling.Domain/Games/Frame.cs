@@ -1,6 +1,6 @@
 ﻿namespace OverlyComplicatedBowling.Domain.Games
 {
-    public class Frame
+    public abstract class Frame
     {
         protected Frame() { }
 
@@ -11,7 +11,7 @@
         public virtual bool Completed { get; protected set; }
         public virtual int RemainingPins { get; protected set; }
 
-        public virtual void AddRoll(int knockedPins) { }
-        public virtual void UpdateScore(Roll[]? subsequentRolls = null) { }
+        public abstract void AddRoll(int knockedPins);
+        public abstract void UpdateScore(Roll[]? subsequentRolls = null);
     }
 }

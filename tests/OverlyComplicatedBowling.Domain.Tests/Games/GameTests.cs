@@ -34,5 +34,59 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
             //Assert
             remainingPins.Should().Be(10);
         }
+
+        [TestMethod]
+        public void AddRoll_FinalFrameThreeRolls_AddRollAndUpdateScore()
+        {
+            //Arrange
+            var game = Game.Start();
+            var knockedPins = 10;
+
+            //Act
+            for (int i = 0; i < 12; i++)
+            {
+                game.AddRoll(knockedPins);
+            }
+
+            //Assert
+            game.Frames[10].Rolls.Count.Should().Be(3);
+            game.Frames[10].Scored.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void AddRoll_FinalFrameTwoRolls_AddRollAndUpdateScore()
+        {
+            //Arrange
+            var game = Game.Start();
+
+            //Act
+            for (int i = 0; i < 9; i++)
+            {
+                game.AddRoll(10);
+            }
+            game.AddRoll(1);
+            game.AddRoll(1);
+
+            //Assert
+            game.Frames[10].Rolls.Count.Should().Be(2);
+            game.Frames[10].Scored.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void AddRoll_PerfectGame_ScoreShouldBe300()
+        {
+            //Arrange
+            var game = Game.Start();
+            var knockedPins = 10;
+
+            //Act
+            for (int i = 0; i < 12; i++)
+            {
+                game.AddRoll(knockedPins);
+            }
+
+            //Assert
+            game.Frames.Values.Sum(f => f.Score).Should().Be(300);
+        }
     }
 }
