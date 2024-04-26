@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OverlyComplicatedBowling.Domain\OverlyComplicatedBowling.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

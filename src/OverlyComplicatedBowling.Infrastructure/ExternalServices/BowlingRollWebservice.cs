@@ -1,4 +1,4 @@
-﻿using OverlyComplicatedBowling.Application.Abstractions;
+﻿using OverlyComplicatedBowling.Application.Interfaces;
 
 namespace OverlyComplicatedBowling.Infrastructure.Scraping
 {

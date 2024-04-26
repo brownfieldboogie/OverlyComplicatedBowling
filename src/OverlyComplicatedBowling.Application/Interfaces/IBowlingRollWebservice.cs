@@ -1,4 +1,4 @@
-﻿namespace OverlyComplicatedBowling.Application.Abstractions
+﻿namespace OverlyComplicatedBowling.Application.Interfaces
 {
     public interface IBowlingRollWebservice
     {
