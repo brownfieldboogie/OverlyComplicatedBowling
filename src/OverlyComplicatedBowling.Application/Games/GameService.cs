@@ -6,10 +6,12 @@ namespace OverlyComplicatedBowling.Application.Games
     public class GameService : IGameService
     {
         private IBowlingRollWebservice _bowlingRollWebservice;
+        private readonly IGameRepository _gameRepository;
 
-        public GameService(IBowlingRollWebservice bowlingRollWebservice)
+        public GameService(IBowlingRollWebservice bowlingRollWebservice, IGameRepository gameRepository)
         {
             _bowlingRollWebservice = bowlingRollWebservice;
+            _gameRepository = gameRepository;
         }
 
         public GameDto StartGame()

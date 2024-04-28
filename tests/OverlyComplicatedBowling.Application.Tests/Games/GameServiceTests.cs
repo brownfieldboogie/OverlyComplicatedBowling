@@ -12,7 +12,7 @@ namespace OverlyComplicatedBowling.Application.Tests.Games
         public void StartGame_ReturnFreshGame()
         {
             //Arrange
-            var service = new GameService(Substitute.For<IBowlingRollWebservice>());
+            var service = new GameService(Substitute.For<IBowlingRollWebservice>(), Substitute.For<IGameRepository>());
 
             //Act
             var game = service.StartGame();
