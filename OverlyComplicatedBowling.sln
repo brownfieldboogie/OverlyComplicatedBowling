@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverlyComplicatedBowling.Do
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverlyComplicatedBowling.Domain.Tests", "tests\OverlyComplicatedBowling.Domain.Tests\OverlyComplicatedBowling.Domain.Tests.csproj", "{EC9E4150-B16B-4D60-9D08-8F91BE10A521}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverlyComplicatedBowling.Application.Tests", "tests\OverlyComplicatedBowling.Application.Tests\OverlyComplicatedBowling.Application.Tests.csproj", "{2838F7AF-0D4A-4B72-AB32-56C08DB2ABBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverlyComplicatedBowling.Application.Tests", "tests\OverlyComplicatedBowling.Application.Tests\OverlyComplicatedBowling.Application.Tests.csproj", "{2838F7AF-0D4A-4B72-AB32-56C08DB2ABBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverlyComplicatedBowling.Application", "src\OverlyComplicatedBowling.Application\OverlyComplicatedBowling.Application.csproj", "{7297C07F-63B6-4A1F-BCD9-EF7BB0FA5123}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverlyComplicatedBowling.Application", "src\OverlyComplicatedBowling.Application\OverlyComplicatedBowling.Application.csproj", "{7297C07F-63B6-4A1F-BCD9-EF7BB0FA5123}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverlyComplicatedBowling.Presentation.Api", "src\OverlyComplicatedBowling.Presentation.Api\OverlyComplicatedBowling.Presentation.Api.csproj", "{C9C839C3-512A-4049-B17D-FFA1B4C1D34E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{7297C07F-63B6-4A1F-BCD9-EF7BB0FA5123}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7297C07F-63B6-4A1F-BCD9-EF7BB0FA5123}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7297C07F-63B6-4A1F-BCD9-EF7BB0FA5123}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9C839C3-512A-4049-B17D-FFA1B4C1D34E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9C839C3-512A-4049-B17D-FFA1B4C1D34E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9C839C3-512A-4049-B17D-FFA1B4C1D34E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9C839C3-512A-4049-B17D-FFA1B4C1D34E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

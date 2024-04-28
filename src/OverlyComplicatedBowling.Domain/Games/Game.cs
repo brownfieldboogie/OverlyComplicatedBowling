@@ -38,8 +38,6 @@ namespace OverlyComplicatedBowling.Domain.Games
 
         public void AddRoll(int knockedPins)
         {
-            //Add roll to active frame
-            //Update score in frames not scored
             _frames[GetKeyOfAciveFrame()].AddRoll(knockedPins);
 
             for (int i = 1; i <= _frames.Count; i++)

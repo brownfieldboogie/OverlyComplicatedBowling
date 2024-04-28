@@ -34,6 +34,11 @@ namespace OverlyComplicatedBowling.Application.Games.Services
                 throw new ArgumentNullException(nameof(game));
             }
 
+            if (game.IsGameCompleted())
+            {
+                return GameDtoMapper.MapDto(game);
+            }
+
             var remainingPinsOnActiveFrame = game.GetRemainingPinsOnActiveFrame();
             var knockedPins = await _bowlingRollWebservice.GetRollResultAsync(remainingPinsOnActiveFrame);
             game.AddRoll(knockedPins);

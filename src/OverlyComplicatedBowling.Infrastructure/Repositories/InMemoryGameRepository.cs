@@ -7,9 +7,9 @@ namespace OverlyComplicatedBowling.Infrastructure.Repositories
     public class InMemoryGameRepository : IGameRepository
     {
         private readonly Dictionary<Guid, Game> _games = [];
-        private readonly ILogger _logger;
+        private readonly ILogger<InMemoryGameRepository> _logger;
 
-        public InMemoryGameRepository(ILogger logger)
+        public InMemoryGameRepository(ILogger<InMemoryGameRepository> logger)
         {
             _logger = logger;
         }
