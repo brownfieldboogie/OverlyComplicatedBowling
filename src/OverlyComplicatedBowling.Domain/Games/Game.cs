@@ -26,6 +26,11 @@ namespace OverlyComplicatedBowling.Domain.Games
             }
         }
 
+        public bool IsGameCompleted()
+        {
+            return _frames.All(f => f.Value.Completed);
+        }
+
         public int GetRemainingPinsOnActiveFrame()
         {
             return _frames[GetKeyOfAciveFrame()].RemainingPins;

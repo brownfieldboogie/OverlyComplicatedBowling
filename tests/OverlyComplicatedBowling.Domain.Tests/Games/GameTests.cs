@@ -23,6 +23,38 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
         }
 
         [TestMethod]
+        public void IsGameCompleted_AllFramesNotCompleted_ReturnsFalse()
+        {
+            //Arrange
+            var game = Game.Start();
+            game.AddRoll(10);
+            game.AddRoll(10);
+
+            //Act
+            var gameCompleted = game.IsGameCompleted();
+
+            //Assert
+            gameCompleted.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void IsGameCompleted_AllFramesCompleted_ReturnsTrue()
+        {
+            //Arrange
+            var game = Game.Start();
+            for (int i = 0; i < 12; i++)
+            {
+                game.AddRoll(10);
+            }
+
+            //Act
+            var gameCompleted = game.IsGameCompleted();
+
+            //Assert
+            gameCompleted.Should().BeTrue();
+        }
+
+        [TestMethod]
         public void GetRemainingPinsOnActiveFrame_ReturnRemainingPins()
         {
             //Arrange
