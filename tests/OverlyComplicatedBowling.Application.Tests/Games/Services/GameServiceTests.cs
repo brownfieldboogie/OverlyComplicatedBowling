@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
 using NSubstitute;
-using OverlyComplicatedBowling.Application.Games;
+using OverlyComplicatedBowling.Application.Games.Services;
 using OverlyComplicatedBowling.Application.Interfaces;
 using OverlyComplicatedBowling.Domain.Games;
 
-namespace OverlyComplicatedBowling.Application.Tests.Games
+namespace OverlyComplicatedBowling.Application.Tests.Games.Services
 {
     [TestClass]
     public class GameServiceTests

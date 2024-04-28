@@ -1,4 +1,4 @@
-﻿namespace OverlyComplicatedBowling.Application.Games
+﻿namespace OverlyComplicatedBowling.Application.Games.Dtos
 {
     public class GameDto
     {

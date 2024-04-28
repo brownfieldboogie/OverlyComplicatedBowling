@@ -1,4 +1,4 @@
-﻿using OverlyComplicatedBowling.Application.Games;
+﻿using OverlyComplicatedBowling.Application.Games.Dtos;
 
 namespace OverlyComplicatedBowling.Application.Interfaces
 {
