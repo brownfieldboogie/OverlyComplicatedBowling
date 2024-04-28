@@ -4,7 +4,7 @@ namespace OverlyComplicatedBowling.Application.Interfaces
 {
     public interface IGameRepository
     {
-        void SaveGame(Game game);
-        Game? LoadGame(Guid Id);
+        Task SaveGameAsync(Game game);
+        Task<Game?> LoadGameAsync(Guid Id);
     }
 }

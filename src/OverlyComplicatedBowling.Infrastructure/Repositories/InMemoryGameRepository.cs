@@ -14,7 +14,7 @@ namespace OverlyComplicatedBowling.Infrastructure.Repositories
             _logger = logger;
         }
 
-        public void SaveGame(Game game)
+        public Task SaveGameAsync(Game game)
         {
             if (_games.ContainsKey(game.Id))
             {
@@ -24,19 +24,20 @@ namespace OverlyComplicatedBowling.Infrastructure.Repositories
             {
                 _games.Add(game.Id, game);
             }
+
+            return Task.CompletedTask;
         }
 
-        public Game? LoadGame(Guid Id)
+        public Task<Game?> LoadGameAsync(Guid Id)
         {
-            if (_games.TryGetValue(Id, out Game game))
-            {
-                return game;
-            }
-            else
+            Game? game = _games.GetValueOrDefault(Id);
+
+            if (game == null)
             {
                 _logger.LogWarning("Did not find game with id {id}, returning null", Id);
-                return null;
             }
+
+            return Task.FromResult(game);
         }
     }
 }

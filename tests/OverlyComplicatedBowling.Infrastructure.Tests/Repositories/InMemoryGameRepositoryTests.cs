@@ -10,28 +10,28 @@ namespace OverlyComplicatedBowling.Infrastructure.Tests.Repositories
     public class InMemoryGameRepositoryTests
     {
         [TestMethod]
-        public void SaveGame_SavesGame()
+        public async Task SaveGame_SavesGame()
         {
             //Arrange
             var repository = new InMemoryGameRepository(Substitute.For<ILogger>());
             var game = Game.Start();
 
             //Act
-            repository.SaveGame(game);
-            var loadedGame = repository.LoadGame(game.Id);
+            await repository.SaveGameAsync(game);
+            var loadedGame = await repository.LoadGameAsync(game.Id);
 
             //Assert
             loadedGame.Should().NotBeNull();
         }
 
         [TestMethod]
-        public void LoadGame_NoGameWithIdExists_ReturnsNull()
+        public async Task LoadGame_NoGameWithIdExists_ReturnsNull()
         {
             //Arrange
             var repository = new InMemoryGameRepository(Substitute.For<ILogger>());
 
             //Act
-            var loadedGame = repository.LoadGame(Guid.NewGuid());
+            var loadedGame = await repository.LoadGameAsync(Guid.NewGuid());
 
             //Assert
             loadedGame.Should().BeNull();
