@@ -4,6 +4,7 @@ namespace OverlyComplicatedBowling.Application.Interfaces
 {
     public interface IGameService
     {
-        GameDto StartGame();
+        Task<GameDto> StartGameAsync();
+        Task<GameDto> AddRollAsync(Guid gameId);
     }
 }

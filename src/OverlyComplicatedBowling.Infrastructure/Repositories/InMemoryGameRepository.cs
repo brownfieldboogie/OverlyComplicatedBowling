@@ -32,7 +32,7 @@ namespace OverlyComplicatedBowling.Infrastructure.Repositories
         {
             Game? game = _games.GetValueOrDefault(Id);
 
-            if (game == null)
+            if (game is null)
             {
                 _logger.LogWarning("Did not find game with id {id}, returning null", Id);
             }

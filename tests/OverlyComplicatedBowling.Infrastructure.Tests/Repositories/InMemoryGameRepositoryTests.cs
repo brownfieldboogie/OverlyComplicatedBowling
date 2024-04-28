@@ -10,7 +10,7 @@ namespace OverlyComplicatedBowling.Infrastructure.Tests.Repositories
     public class InMemoryGameRepositoryTests
     {
         [TestMethod]
-        public async Task SaveGame_SavesGame()
+        public async Task SaveGameAsync_SavesGame()
         {
             //Arrange
             var repository = new InMemoryGameRepository(Substitute.For<ILogger>());
@@ -25,7 +25,7 @@ namespace OverlyComplicatedBowling.Infrastructure.Tests.Repositories
         }
 
         [TestMethod]
-        public async Task LoadGame_NoGameWithIdExists_ReturnsNull()
+        public async Task LoadGameAsync_NoGameWithIdExists_ReturnsNull()
         {
             //Arrange
             var repository = new InMemoryGameRepository(Substitute.For<ILogger>());
