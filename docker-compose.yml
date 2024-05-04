@@ -1,0 +1,22 @@
+services:
+ mongo:
+  image: mongo:latest
+  ports:
+   - 27017:27017
+  volumes:
+   - mongodb:/data/db
+   - mongodb_config:/data/configdb
+
+ overlycomplicatedbowling.api:
+  environment:
+   - ASPNETCORE_ENVIRONMENT=Development
+   - ASPNETCORE_HTTP_PORTS=5000
+  build:
+   context: .
+   dockerfile: src/OverlyComplicatedBowling.Presentation.Api/Dockerfile
+  ports:
+   - "5000:5000"
+
+volumes:
+ mongodb:
+ mongodb_config:
