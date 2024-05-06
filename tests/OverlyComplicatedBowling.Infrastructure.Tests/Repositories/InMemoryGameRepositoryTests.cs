@@ -13,7 +13,7 @@ namespace OverlyComplicatedBowling.Infrastructure.Tests.Repositories
         public async Task SaveGameAsync_SavesGame()
         {
             //Arrange
-            var repository = new InMemoryGameRepository(Substitute.For<ILogger>());
+            var repository = new InMemoryGameRepository(Substitute.For<ILogger<InMemoryGameRepository>>());
             var game = Game.Start();
 
             //Act
@@ -28,7 +28,7 @@ namespace OverlyComplicatedBowling.Infrastructure.Tests.Repositories
         public async Task LoadGameAsync_NoGameWithIdExists_ReturnsNull()
         {
             //Arrange
-            var repository = new InMemoryGameRepository(Substitute.For<ILogger>());
+            var repository = new InMemoryGameRepository(Substitute.For<ILogger<InMemoryGameRepository>>());
 
             //Act
             var loadedGame = await repository.LoadGameAsync(Guid.NewGuid());

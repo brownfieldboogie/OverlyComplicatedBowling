@@ -4,8 +4,6 @@ namespace OverlyComplicatedBowling.Domain.Games
 {
     public class Game
     {
-        private Game() { }
-
         public Guid Id { get; private set; } = Guid.NewGuid();
         internal SortedDictionary<int, Frame> _frames = [];
         public IReadOnlyDictionary<int, Frame> Frames => new ReadOnlyDictionary<int, Frame>(_frames);
