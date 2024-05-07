@@ -7,6 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="OverlyComplicatedBowling.Domain.Tests"/>
+    <InternalsVisibleTo Include="OverlyComplicatedBowling.Domain.Tests" />
   </ItemGroup>
 </Project>

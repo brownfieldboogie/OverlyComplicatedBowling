@@ -43,6 +43,8 @@ namespace OverlyComplicatedBowling.Application.Games.Services
             var knockedPins = await _bowlingRollWebservice.GetRollResultAsync(remainingPinsOnActiveFrame);
             game.AddRoll(knockedPins);
 
+            await _gameRepository.SaveGameAsync(game);
+
             return GameDtoMapper.MapDto(game);
         }
     }

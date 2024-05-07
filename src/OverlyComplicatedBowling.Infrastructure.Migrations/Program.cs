@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OverlyComplicatedBowling.Infrastructure.Repositories;
@@ -7,9 +8,13 @@ using OverlyComplicatedBowling.Infrastructure.Repositories;
 
 var builder = Host.CreateDefaultBuilder();
 
-builder.ConfigureServices(services =>
+builder.ConfigureServices((context, services) =>
 {
-    services.AddDbContext<PostgreSQLDbContext>();
+    services.AddDbContext<PostgreSQLDbContext>(options =>
+    {
+        options.UseNpgsql(context.Configuration.GetConnectionString("PostgreSQL"), o =>
+            o.MigrationsAssembly("OverlyComplicatedBowling.Infrastructure.Migrations")); //could be more graceful
+    });
 });
 
 var app = builder.Build();

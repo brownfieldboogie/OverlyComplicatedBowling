@@ -1,25 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using OverlyComplicatedBowling.Domain.Games;
+using OverlyComplicatedBowling.Infrastructure.Serialization;
 
 namespace OverlyComplicatedBowling.Infrastructure.Repositories
 {
     public class PostgreSQLDbContext : DbContext
     {
-        protected readonly IConfiguration Configuration;
+        public PostgreSQLDbContext(DbContextOptions<PostgreSQLDbContext> options) : base(options) { }
 
-        public PostgreSQLDbContext(IConfiguration configuration)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Configuration = configuration;
-        }
+            base.OnModelCreating(modelBuilder);
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql(Configuration.GetConnectionString("PostgreSQL"), options =>
-                options.MigrationsAssembly("OverlyComplicatedBowling.Infrastructure.Migrations")); //could be more graceful
+            modelBuilder.Entity<Game>()
+                .Property(g => g.Frames)
+                .HasConversion(
+                    v => JsonConvert.SerializeObject(v, JsonSettings.TypeNameHandlingAuto),
+                    v => JsonConvert.DeserializeObject<SortedDictionary<int, Frame>>(v, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto }));
         }
 
         public DbSet<Game> Games { get; set; } //todo fix dbset mappings
-        //todo add tests using testcontainer
     }
 }
