@@ -17,9 +17,9 @@ namespace OverlyComplicatedBowling.Infrastructure.Repositories
                 .Property(g => g.Frames)
                 .HasConversion(
                     v => JsonConvert.SerializeObject(v, JsonSettings.TypeNameHandlingAuto),
-                    v => JsonConvert.DeserializeObject<SortedDictionary<int, Frame>>(v, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto }));
+                    v => JsonConvert.DeserializeObject<SortedDictionary<int, Frame>>(v, JsonSettings.TypeNameHandlingAuto));
         }
 
-        public DbSet<Game> Games { get; set; } //todo fix dbset mappings
+        public DbSet<Game> Games { get; set; }
     }
 }

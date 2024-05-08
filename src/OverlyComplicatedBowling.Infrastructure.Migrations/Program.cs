@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OverlyComplicatedBowling.Infrastructure.Repositories;
+using System.Reflection;
 
 //To add migration use "dotnet ef migrations add NAME"
 
@@ -10,10 +11,12 @@ var builder = Host.CreateDefaultBuilder();
 
 builder.ConfigureServices((context, services) =>
 {
+    var connectionString = context.Configuration.GetConnectionString("PostgreSQL");
+    var assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+
     services.AddDbContext<PostgreSQLDbContext>(options =>
     {
-        options.UseNpgsql(context.Configuration.GetConnectionString("PostgreSQL"), o =>
-            o.MigrationsAssembly("OverlyComplicatedBowling.Infrastructure.Migrations")); //could be more graceful
+        options.UseNpgsql(connectionString, o => o.MigrationsAssembly(assemblyName));
     });
 });
 

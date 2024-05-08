@@ -15,8 +15,7 @@ namespace OverlyComplicatedBowling.Infrastructure
             services.AddTransient<IBowlingRollWebservice, BowlingRollWebservice>();
             services.AddDbContext<PostgreSQLDbContext>(options =>
             {
-                options.UseNpgsql(configuration.GetConnectionString("PostgreSQL"), o =>
-                    o.MigrationsAssembly("OverlyComplicatedBowling.Infrastructure.Migrations")); //could be more graceful
+                options.UseNpgsql(configuration.GetConnectionString("PostgreSQL"));
             });
 
             return services;
