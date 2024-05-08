@@ -50,5 +50,29 @@ namespace OverlyComplicatedBowling.Infrastructure.Tests.Repositories
             result.Frames.Last().Key.Should().Be(10);
             result.Frames.Last().Value.GetType().Should().Be(typeof(FinalFrame));
         }
+
+        [TestMethod]
+        public async Task SaveGameAsync_MapsNormalFramesCorrectly()
+        {
+            //Arrange
+            var dbContextOptions = new DbContextOptionsBuilder<PostgreSQLDbContext>()
+                .UseInMemoryDatabase("mockdb")
+                .Options;
+            var dbContextMock = new PostgreSQLDbContext(dbContextOptions);
+            var repository = new PostgreSQLRepository(dbContextMock);
+            var game = Game.Start();
+            game.AddRoll(3);
+            game.AddRoll(2);
+
+            //Act
+            await repository.SaveGameAsync(game);
+            var result = await repository.LoadGameAsync(game.Id);
+
+            //Assert
+            result.Should().NotBeNull();
+            result.Frames.Should().NotBeNull();
+            result.Frames.First().Should().NotBeNull();
+            result.Frames.First().Value.Should().BeEquivalentTo(game.Frames.First().Value);
+        }
     }
 }
