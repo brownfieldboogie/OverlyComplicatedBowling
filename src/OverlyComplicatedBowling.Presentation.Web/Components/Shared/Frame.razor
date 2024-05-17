@@ -1,0 +1,16 @@
+﻿@using OverlyComplicatedBowling.Presentation.Web.Models
+
+<div class="frame">
+	<div class="rolls-container">
+		@foreach(Roll roll in Rolls.Values)
+		{
+			<div class="roll">@roll.KnockedPins</div>
+		}
+	</div>
+	<div class="score">666</div>
+</div>
+
+@code {
+	[Parameter]
+	public SortedDictionary<int, Roll> Rolls { get; set; }
+}

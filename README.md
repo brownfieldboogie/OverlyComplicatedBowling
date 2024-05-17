@@ -3,8 +3,8 @@
 
 Todo:
 - implement unit of work
-- implement repository pattern
+- implement generic repository
 - use environment variables in docker
-- crate frontend
+- create frontend
 - make multiplayer
  

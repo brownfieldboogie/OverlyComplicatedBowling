@@ -1,0 +1,26 @@
+﻿@page "/"
+@using OverlyComplicatedBowling.Presentation.Web.Components.Shared
+@using OverlyComplicatedBowling.Presentation.Web.Models
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<Frame Rolls="@rolls"/>
+
+Welcome to your new app.
+
+@code {
+	private SortedDictionary<int, Roll> rolls;
+
+	protected override void OnInitialized()
+	{
+		rolls = new()
+		{
+			{1, new Roll{KnockedPins = 1}},
+			{2, new Roll{KnockedPins = 2}},
+			{3, new Roll{KnockedPins = 3}}
+		};
+		base.OnInitialized();
+	}
+}

@@ -1,0 +1,26 @@
+﻿.frame {
+    border-style: solid;
+    border-width: 0.5px;
+    width: fit-content;
+    display: grid;
+}
+
+.rolls-container {
+    float: right;
+    display: flex;
+    width: fit-content;
+    padding-left: 20px;
+}
+
+.roll {
+    border-width: 0.5px;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    padding: 2px;
+}
+
+.score {
+    display: flex;
+    float: left;
+    padding: 2px;
+}

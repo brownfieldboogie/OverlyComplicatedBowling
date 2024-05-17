@@ -17,7 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverlyComplicatedBowling.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverlyComplicatedBowling.Presentation.Api", "src\OverlyComplicatedBowling.Presentation.Api\OverlyComplicatedBowling.Presentation.Api.csproj", "{C9C839C3-512A-4049-B17D-FFA1B4C1D34E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverlyComplicatedBowling.Infrastructure.Migrations", "src\OverlyComplicatedBowling.Infrastructure.Migrations\OverlyComplicatedBowling.Infrastructure.Migrations.csproj", "{9465F614-56C5-47DC-81C1-6DBAA7600676}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverlyComplicatedBowling.Infrastructure.Migrations", "src\OverlyComplicatedBowling.Infrastructure.Migrations\OverlyComplicatedBowling.Infrastructure.Migrations.csproj", "{9465F614-56C5-47DC-81C1-6DBAA7600676}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverlyComplicatedBowling.Presentation.Web", "src\OverlyComplicatedBowling.Presentation.Web\OverlyComplicatedBowling.Presentation.Web.csproj", "{449DAD7E-C829-4CAA-9C9F-7340F6A8D063}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "src\Test\Test.csproj", "{4DF1430B-F110-48ED-8CE9-D6DB0F16929E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,14 @@ Global
 		{9465F614-56C5-47DC-81C1-6DBAA7600676}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9465F614-56C5-47DC-81C1-6DBAA7600676}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9465F614-56C5-47DC-81C1-6DBAA7600676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{449DAD7E-C829-4CAA-9C9F-7340F6A8D063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{449DAD7E-C829-4CAA-9C9F-7340F6A8D063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{449DAD7E-C829-4CAA-9C9F-7340F6A8D063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{449DAD7E-C829-4CAA-9C9F-7340F6A8D063}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DF1430B-F110-48ED-8CE9-D6DB0F16929E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DF1430B-F110-48ED-8CE9-D6DB0F16929E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DF1430B-F110-48ED-8CE9-D6DB0F16929E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DF1430B-F110-48ED-8CE9-D6DB0F16929E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
