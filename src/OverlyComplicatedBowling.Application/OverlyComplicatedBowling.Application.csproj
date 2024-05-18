@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OverlyComplicatedBowling.Domain\OverlyComplicatedBowling.Domain.csproj" />
+    <ProjectReference Include="..\OverlyComplicatedBowling.Shared\OverlyComplicatedBowling.Shared.csproj" />
   </ItemGroup>
 
 </Project>

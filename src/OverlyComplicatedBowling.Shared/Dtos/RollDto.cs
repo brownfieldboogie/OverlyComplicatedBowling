@@ -1,6 +1,6 @@
-﻿namespace OverlyComplicatedBowling.Presentation.Web.Models
+﻿namespace OverlyComplicatedBowling.Shared.Dtos
 {
-	public class Roll
+	public class RollDto
 	{
 		public int KnockedPins { get; set; }
 		public bool IsStrike { get; set; }

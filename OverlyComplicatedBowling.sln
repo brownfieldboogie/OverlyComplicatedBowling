@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverlyComplicatedBowling.In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverlyComplicatedBowling.Presentation.Web", "src\OverlyComplicatedBowling.Presentation.Web\OverlyComplicatedBowling.Presentation.Web.csproj", "{449DAD7E-C829-4CAA-9C9F-7340F6A8D063}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverlyComplicatedBowling.Shared", "src\OverlyComplicatedBowling.Shared\OverlyComplicatedBowling.Shared.csproj", "{FBC3D931-B6BC-48A1-BD31-B5F360BDAD6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{449DAD7E-C829-4CAA-9C9F-7340F6A8D063}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{449DAD7E-C829-4CAA-9C9F-7340F6A8D063}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{449DAD7E-C829-4CAA-9C9F-7340F6A8D063}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBC3D931-B6BC-48A1-BD31-B5F360BDAD6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBC3D931-B6BC-48A1-BD31-B5F360BDAD6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBC3D931-B6BC-48A1-BD31-B5F360BDAD6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBC3D931-B6BC-48A1-BD31-B5F360BDAD6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

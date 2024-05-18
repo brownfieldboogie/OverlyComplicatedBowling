@@ -1,25 +1,45 @@
 ﻿@page "/"
 @using OverlyComplicatedBowling.Presentation.Web.Components.Shared
-@using OverlyComplicatedBowling.Presentation.Web.Models
+@using OverlyComplicatedBowling.Shared.Dtos
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Bowling!!</h1>
 
-<Frame Rolls="@rolls"/>
+<Game Frames="@frames" />
 
 Welcome to your new app.
 
 @code {
-	private SortedDictionary<int, Roll> rolls;
+	private SortedDictionary<int, RollDto> rolls;
+	private SortedDictionary<int, RollDto> rolls2;
+	private SortedDictionary<int, FrameDto> frames;
 
 	protected override void OnInitialized()
 	{
 		rolls = new()
 		{
-			{1, new Roll{KnockedPins = 1}},
-			{2, new Roll{KnockedPins = 2}},
-			{3, new Roll{KnockedPins = 3}}
+			{1, new RollDto{KnockedPins = 1}},
+			{2, new RollDto{KnockedPins = 2}}
+		};
+		rolls2 = new()
+		{
+			{1, new RollDto{KnockedPins = 1}},
+			{2, new RollDto{KnockedPins = 2}},
+			{3, new RollDto{KnockedPins = 3}}
+		};
+		frames = new()
+		{
+			{1, new FrameDto{Rolls=@rolls}},
+			{2, new FrameDto{Rolls=@rolls}},
+			{3, new FrameDto{Rolls=@rolls}},
+			{4, new FrameDto{Rolls=@rolls}},
+			{5, new FrameDto{Rolls=@rolls}},
+			{6, new FrameDto{Rolls=@rolls}},
+			{7, new FrameDto{Rolls=@rolls}},
+			{8, new FrameDto{Rolls=@rolls}},
+			{9, new FrameDto{Rolls=@rolls}},
+			{10, new FrameDto{Rolls=@rolls2}},
 		};
 		base.OnInitialized();
 	}
