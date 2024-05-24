@@ -17,6 +17,8 @@
     border-left-style: solid;
     border-bottom-style: solid;
     padding: 2px;
+    min-width: 15px;
+    min-height: 30px;
 }
 
 .score {

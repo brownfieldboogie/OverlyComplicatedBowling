@@ -7,5 +7,8 @@ namespace OverlyComplicatedBowling.Presentation.Web.Components.Shared
 	{
 		[Parameter]
 		public SortedDictionary<int, RollDto> Rolls { get; set; }
+
+		[Parameter]
+		public int MaxRolls { get; set; }
 	}
 }

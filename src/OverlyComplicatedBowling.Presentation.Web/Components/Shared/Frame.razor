@@ -3,9 +3,15 @@
 
 <div class="frame">
 	<div class="rolls-container">
-		@foreach(RollDto roll in Rolls.Values)
+		@for (int i = 1; i < MaxRolls+1; i++)
 		{
-			<div class="roll">@roll.KnockedPins</div>
+			int? knockedPins = null;
+			if(Rolls is not null && Rolls.TryGetValue(i, out RollDto? roll))
+			{
+				knockedPins = roll?.KnockedPins;
+			}
+
+			<div class="roll">@knockedPins</div>
 		}
 	</div>
 	<div class="score">666</div>
