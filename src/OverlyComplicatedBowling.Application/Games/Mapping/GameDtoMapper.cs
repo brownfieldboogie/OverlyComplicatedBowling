@@ -8,7 +8,7 @@ namespace OverlyComplicatedBowling.Application.Games.Mapping
 		public static GameDto MapDto(Game game) => new()
 		{
 			Id = game.Id,
-			Frames = game.Frames.ToDictionary(pair => pair.Key, pair => FrameDtoMapper.MapDto(pair.Value)),
+			Frames = new SortedDictionary<int, FrameDto>(game.Frames.ToDictionary(pair => pair.Key, pair => FrameDtoMapper.MapDto(pair.Value))),
 			GameCompleted = game.IsGameCompleted()
 		};
 	}

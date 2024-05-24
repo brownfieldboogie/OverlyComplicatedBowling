@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\OverlyComplicatedBowling.Application\OverlyComplicatedBowling.Application.csproj" />
     <ProjectReference Include="..\OverlyComplicatedBowling.Infrastructure\OverlyComplicatedBowling.Infrastructure.csproj" />
+    <ProjectReference Include="..\OverlyComplicatedBowling.Shared\OverlyComplicatedBowling.Shared.csproj" />
   </ItemGroup>
 
 </Project>

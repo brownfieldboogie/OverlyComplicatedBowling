@@ -7,7 +7,7 @@ namespace OverlyComplicatedBowling.Application.Games.Mapping
 	{
 		public static FrameDto MapDto(Frame frame) => new()
 		{
-			Rolls = frame.Rolls.ToDictionary(pair => pair.Key, pair => RollDtoMapper.MapDto(pair.Value)),
+			Rolls = new SortedDictionary<int, RollDto>(frame.Rolls.ToDictionary(pair => pair.Key, pair => RollDtoMapper.MapDto(pair.Value))),
 			MaxRolls = frame.MaxRolls,
 			Score = frame.Score,
 			Scored = frame.Scored,

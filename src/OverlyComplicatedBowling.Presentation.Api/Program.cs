@@ -23,13 +23,13 @@ app.UseSwaggerUI();
 
 app.MapGet("/StartGame", async (IGameService gameService) =>
 {
-    return Results.Ok(await gameService.StartGameAsync());
+	return Results.Ok(await gameService.StartGameAsync());
 })
 .WithName("StartGame").WithOpenApi();
 
 app.MapPost("/AddRoll/{gameId}", async (IGameService gameService, Guid gameId) =>
 {
-    return await gameService.AddRollAsync(gameId) is { } updatedGame ? Results.Ok(updatedGame) : Results.NotFound();
+	return await gameService.AddRollAsync(gameId) is { } updatedGame ? Results.Ok(updatedGame) : Results.NotFound();
 })
 .WithName("AddRoll").WithOpenApi();
 
