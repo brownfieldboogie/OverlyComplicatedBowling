@@ -1,5 +1,5 @@
-using OverlyComplicatedBowling.Presentation.Web;
 using OverlyComplicatedBowling.Presentation.Web.Components;
+using OverlyComplicatedBowling.Presentation.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
 	.AddInteractiveServerComponents();
 
-builder.Services.AddHttpClient<BowlingHttpClient>(client => client.BaseAddress = new Uri(builder.Configuration.GetConnectionString("OCBApi")));
+builder.Services.AddHttpClient<IOverlyComplicatedBowlingService, OverlyComplicatedBowlingService>(client =>
+{
+	client.BaseAddress = new Uri(builder.Configuration.GetConnectionString("OCBApi"));
+});
 
 var app = builder.Build();
 
