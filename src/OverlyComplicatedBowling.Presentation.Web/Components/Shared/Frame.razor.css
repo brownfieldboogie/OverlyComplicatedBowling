@@ -25,4 +25,5 @@
     display: flex;
     float: left;
     padding: 2px;
+    min-height: 30px;
 }

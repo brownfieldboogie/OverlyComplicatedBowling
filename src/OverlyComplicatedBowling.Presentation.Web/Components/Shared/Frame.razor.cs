@@ -10,5 +10,11 @@ namespace OverlyComplicatedBowling.Presentation.Web.Components.Shared
 
 		[Parameter]
 		public int MaxRolls { get; set; }
+
+		[Parameter]
+		public bool Scored { get; set; }
+
+		[Parameter]
+		public int AccumulatedScore { get; set; }
 	}
 }

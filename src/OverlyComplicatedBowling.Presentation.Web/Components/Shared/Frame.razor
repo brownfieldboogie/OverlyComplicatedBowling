@@ -5,14 +5,22 @@
 	<div class="rolls-container">
 		@for (int i = 1; i < MaxRolls+1; i++)
 		{
-			int? knockedPins = null;
-			if(Rolls is not null && Rolls.TryGetValue(i, out RollDto? roll))
+			string? knockedPins = null;
+			if(Rolls is not null && Rolls.TryGetValue(i, out RollDto? roll) && roll is not null)
 			{
-				knockedPins = roll?.KnockedPins;
+				knockedPins = roll.IsStrike ? "X" : 
+					roll.IsSpare ? "/" : 
+					roll.KnockedPins.ToString();
 			}
 
 			<div class="roll">@knockedPins</div>
 		}
 	</div>
-	<div class="score">666</div>
+		
+	<div class="score">
+		@if (Scored)
+		{
+			@AccumulatedScore
+		}
+	</div>
 </div>
