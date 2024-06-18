@@ -11,9 +11,9 @@ services:
     POSTGRES_PASSWORD: pw
   healthcheck:
     test: ["CMD-SHELL", "pg_isready"]
-    interval: 10s
+    interval: 2s
     timeout: 5s
-    retries: 5
+    retries: 30
 
  overlycomplicatedbowling.infrastructure.migrations:
   depends_on: 
@@ -28,7 +28,7 @@ services:
     postgres:
       condition: service_started
     overlycomplicatedbowling.infrastructure.migrations:
-      condition: service_started
+      condition: service_completed_successfully
   environment:
    - ASPNETCORE_ENVIRONMENT=Development
    - ASPNETCORE_HTTP_PORTS=5000

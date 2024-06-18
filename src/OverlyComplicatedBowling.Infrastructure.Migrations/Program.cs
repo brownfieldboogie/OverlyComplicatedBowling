@@ -11,21 +11,25 @@ var builder = Host.CreateDefaultBuilder();
 
 builder.ConfigureServices((context, services) =>
 {
-    var connectionString = context.Configuration.GetConnectionString("PostgreSQL");
-    var assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+	var connectionString = context.Configuration.GetConnectionString("PostgreSQL");
+	var assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
 
-    services.AddDbContext<PostgreSQLDbContext>(options =>
-    {
-        options.UseNpgsql(connectionString, o => o.MigrationsAssembly(assemblyName));
-    });
+	services.AddDbContext<PostgreSQLDbContext>(options =>
+	{
+		options.UseNpgsql(connectionString, o => o.MigrationsAssembly(assemblyName));
+	});
 });
 
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<PostgreSQLDbContext>();
-    db.Database.Migrate();
+	var db = scope.ServiceProvider.GetRequiredService<PostgreSQLDbContext>();
+	await db.Database.MigrateAsync();
 }
 
-app.Run(); //todo shut down automatically when database has been updated
+//app.Run(); //todo shut down automatically when database has been updated
+using (app)
+{
+	await app.StopAsync();
+}
