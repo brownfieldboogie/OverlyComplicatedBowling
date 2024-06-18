@@ -28,7 +28,6 @@ using (var scope = app.Services.CreateScope())
 	await db.Database.MigrateAsync();
 }
 
-//app.Run(); //todo shut down automatically when database has been updated
 using (app)
 {
 	await app.StopAsync();
