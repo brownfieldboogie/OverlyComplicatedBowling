@@ -11,6 +11,8 @@ There's still a lot of stuff to do..
 - implement unit of work
 - implement generic repository
 - use environment variables in docker
-- fix https
+- fix https for API and Web
 - make multiplayer (introduce "match" as an object containing multiple games - one pr bowler)
 - fix unhandled exceptions in web on timeout
+- introduce more config variables and environment variables
+- more UI prettier
