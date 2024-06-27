@@ -10,7 +10,7 @@ namespace OverlyComplicatedBowling.Infrastructure.Scraping
 		{
 			_httpClient = httpClient;
 
-			_httpClient.BaseAddress = new Uri("http://www.randomnumberapi.com/api/v1.0/"); //move to appsettings?
+			_httpClient.BaseAddress = new Uri("http://www.randomnumberapi.com/api/v1.0/");
 		}
 
 		public async Task<int> GetRollResultAsync(int remainingPins)

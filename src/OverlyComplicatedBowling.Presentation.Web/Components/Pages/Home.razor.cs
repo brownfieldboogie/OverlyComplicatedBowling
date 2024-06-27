@@ -9,7 +9,7 @@ namespace OverlyComplicatedBowling.Presentation.Web.Components.Pages
 		[Inject]
 		public IOverlyComplicatedBowlingService OverlyComplicatedBowlingService { get; set; }
 
-		protected SortedDictionary<int, FrameDto> Frames;
+		protected SortedDictionary<int, FrameDto> Frames = new();
 		private Guid _gameId;
 
 		protected string Message { get; set; }
@@ -17,19 +17,6 @@ namespace OverlyComplicatedBowling.Presentation.Web.Components.Pages
 		protected override void OnInitialized()
 		{
 			Message = "Are you ready to bowl the night away?";
-			Frames = new()
-			{
-				{1, new FrameDto{MaxRolls=2}},
-				{2, new FrameDto{MaxRolls=2}},
-				{3, new FrameDto{MaxRolls=2}},
-				{4, new FrameDto{MaxRolls=2}},
-				{5, new FrameDto{MaxRolls=2}},
-				{6, new FrameDto{MaxRolls=2}},
-				{7, new FrameDto{MaxRolls=2}},
-				{8, new FrameDto{MaxRolls=2}},
-				{9, new FrameDto{MaxRolls=2}},
-				{10, new FrameDto{MaxRolls=3}},
-			};
 			base.OnInitialized();
 		}
 

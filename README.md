@@ -14,5 +14,5 @@ There's still a lot of stuff to do..
 - fix https for API and Web
 - make multiplayer (introduce "match" as an object containing multiple games - one pr bowler)
 - fix unhandled exceptions in web on timeout
-- introduce more config variables and environment variables
+- introduce more config variables and environment variables (e.g. baseaddress for external webservice)
 - more UI prettier
