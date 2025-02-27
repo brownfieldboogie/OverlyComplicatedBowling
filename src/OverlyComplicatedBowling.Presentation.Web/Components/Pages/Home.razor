@@ -5,15 +5,21 @@
 
 <PageTitle>OverlyComplicatedBowling</PageTitle>
 
-<h1>Bowling!</h1>
-<h3>@Message</h3>
+<div class="main-view">
+	<img src="images\banner.jpg" />
+	<h1>Bowling!</h1>
+	<h3>@Message</h3>
+	<button @onclick="StartGame">
+		@StartButtonText
+	</button>
 
-<button @onclick="StartGame">
-	Start Game!
-</button>
+	<div class="game-view">
 
-<button @onclick="AddRoll">
-	Add Roll
-</button>
+		@if(@GameStarted) 
+		{
+			<img src="images\roll.jpg" @onclick="AddRoll" class="roll-button" title="Roll!"/>
+		}
 
-<Game Frames="@Frames" />
+		<Game Frames="@Frames" />
+	</div>
+</div>

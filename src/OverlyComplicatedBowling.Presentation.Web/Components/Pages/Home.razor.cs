@@ -11,12 +11,15 @@ namespace OverlyComplicatedBowling.Presentation.Web.Components.Pages
 
 		protected SortedDictionary<int, FrameDto> Frames = new();
 		private Guid _gameId;
+		protected bool GameStarted { get; set; }
+		protected string StartButtonText { get; set; }
 
 		protected string Message { get; set; }
 
 		protected override void OnInitialized()
 		{
 			Message = "Are you ready to bowl the night away?";
+			StartButtonText = "Start game";
 			base.OnInitialized();
 		}
 
@@ -24,9 +27,11 @@ namespace OverlyComplicatedBowling.Presentation.Web.Components.Pages
 		{
 			var newGame = await OverlyComplicatedBowlingService.StartGameAsync();
 			Message = "Lets go!";
+			StartButtonText = "Restart game!";
 
 			Frames = newGame.Frames;
 			_gameId = newGame.Id;
+			GameStarted = true;
 		}
 
 		protected async Task AddRoll()
