@@ -31,12 +31,12 @@ namespace OverlyComplicatedBowling.Domain.Games
 
 		public int GetRemainingPinsOnActiveFrame()
 		{
-			return _frames[GetKeyOfAciveFrame()].RemainingPins;
+			return _frames[GetKeyOfActiveFrame()].RemainingPins;
 		}
 
 		public void AddRoll(int knockedPins)
 		{
-			_frames[GetKeyOfAciveFrame()].AddRoll(knockedPins);
+			_frames[GetKeyOfActiveFrame()].AddRoll(knockedPins);
 
 			for (int i = 1; i <= _frames.Count; i++)
 			{
@@ -44,7 +44,7 @@ namespace OverlyComplicatedBowling.Domain.Games
 			}
 		}
 
-		private int GetKeyOfAciveFrame()
+		private int GetKeyOfActiveFrame()
 		{
 			return _frames.First(f => !f.Value.Completed).Key;
 		}
