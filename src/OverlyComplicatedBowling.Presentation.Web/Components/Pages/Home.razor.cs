@@ -12,6 +12,7 @@ namespace OverlyComplicatedBowling.Presentation.Web.Components.Pages
 		protected SortedDictionary<int, FrameDto> Frames = new();
 		private Guid _gameId;
 		protected bool GameStarted { get; set; }
+		protected bool GameCompleted { get; set; }
 		protected string StartButtonText { get; set; }
 
 		protected string Message { get; set; }
@@ -32,6 +33,7 @@ namespace OverlyComplicatedBowling.Presentation.Web.Components.Pages
 			Frames = newGame.Frames;
 			_gameId = newGame.Id;
 			GameStarted = true;
+			GameCompleted = newGame.GameCompleted;
 		}
 
 		protected async Task AddRoll()
@@ -39,6 +41,7 @@ namespace OverlyComplicatedBowling.Presentation.Web.Components.Pages
 			var updatedGame = await OverlyComplicatedBowlingService.AddRollAsync(_gameId);
 
 			Frames = updatedGame.Frames;
+			GameCompleted = updatedGame.GameCompleted;
 		}
 	}
 }

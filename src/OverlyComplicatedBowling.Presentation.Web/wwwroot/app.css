@@ -25,6 +25,11 @@ html, body {
     width: 60px;
 }
 
+.roll-button:active {
+    transform: scale(1.5);
+    transition: transform 0.2s ease-in;
+}
+
 a, .btn-link {
     color: #006bb7;
 }

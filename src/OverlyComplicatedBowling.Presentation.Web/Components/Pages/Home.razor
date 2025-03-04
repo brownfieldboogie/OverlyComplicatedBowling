@@ -15,9 +15,9 @@
 
 	<div class="game-view">
 
-		@if(@GameStarted) 
+		@if(@GameStarted && !@GameCompleted) 
 		{
-			<img src="images\roll.jpg" @onclick="AddRoll" class="roll-button" title="Roll!"/>
+			<img src="images\roll.jpg" @onclick="AddRoll" class="roll-button" title="Roll!" />
 		}
 
 		<Game Frames="@Frames" />
