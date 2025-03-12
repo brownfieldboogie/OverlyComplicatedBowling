@@ -44,7 +44,7 @@ namespace OverlyComplicatedBowling.Domain.Games
 			}
 		}
 
-		private int GetKeyOfActiveFrame()
+		public int GetKeyOfActiveFrame()
 		{
 			return _frames.First(f => !f.Value.Completed).Key;
 		}
