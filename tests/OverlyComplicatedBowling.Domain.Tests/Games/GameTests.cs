@@ -105,7 +105,7 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
 		}
 
 		[TestMethod]
-		public void AddRoll_PerfectGame_ScoreShouldBe300()
+		public void AddRoll_PerfectGame_AccumulatedScoreOnLastFrameShouldBe300()
 		{
 			//Arrange
 			var game = Game.Start();
@@ -119,6 +119,23 @@ namespace OverlyComplicatedBowling.Domain.Tests.Games
 
 			//Assert
 			game.Frames.Last().Value.AccumulatedScore.Should().Be(300);
+		}
+
+		[TestMethod]
+		public void AddRoll_PerfectGame_TotalScoreShouldBe300()
+		{
+			//Arrange
+			var game = Game.Start();
+			var knockedPins = 10;
+
+			//Act
+			for (int i = 0; i < 12; i++)
+			{
+				game.AddRoll(knockedPins);
+			}
+
+			//Assert
+			game.TotalScore.Should().Be(300);
 		}
 	}
 }

@@ -7,8 +7,8 @@ namespace OverlyComplicatedBowling.Domain.Matches
 	{
 		public Guid Id { get; private set; } = Guid.NewGuid();
 		internal SortedDictionary<int, Game> _games = [];
-		public Guid IdOfActiveGame;
 		public IReadOnlyDictionary<int, Game> Games => new ReadOnlyDictionary<int, Game>(_games);
+		public Guid IdOfActiveGame;
 
 		public static Match Start(int numberOfPlayers)
 		{

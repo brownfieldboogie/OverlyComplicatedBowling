@@ -7,11 +7,13 @@ namespace OverlyComplicatedBowling.Domain.Games
 		public Guid Id { get; private set; } = Guid.NewGuid();
 		internal SortedDictionary<int, Frame> _frames = [];
 		public IReadOnlyDictionary<int, Frame> Frames => new ReadOnlyDictionary<int, Frame>(_frames);
+		public int TotalScore;
 
 		public static Game Start()
 		{
 			var game = new Game();
 			game.CreateFrames();
+			game.TotalScore = 0;
 			return game;
 		}
 
@@ -67,6 +69,7 @@ namespace OverlyComplicatedBowling.Domain.Games
 
 			var accumulatedScore = _frames.TakeWhile(f => f.Key <= frameKey).Sum(f => f.Value.Score);
 			frame.UpdateAccumulatedScore(accumulatedScore);
+			TotalScore = accumulatedScore;
 		}
 	}
 }
