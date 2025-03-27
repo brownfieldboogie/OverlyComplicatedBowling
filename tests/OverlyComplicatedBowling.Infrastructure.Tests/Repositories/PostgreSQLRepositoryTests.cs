@@ -1,78 +1,81 @@
 ﻿using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using OverlyComplicatedBowling.Domain.Games;
-using OverlyComplicatedBowling.Infrastructure.Repositories;
+using OverlyComplicatedBowling.Domain.Matches;
+using OverlyComplicatedBowling.Infrastructure.Repositories.MatchRepository;
 
 namespace OverlyComplicatedBowling.Infrastructure.Tests.Repositories
 {
-    [TestClass]
-    public class PostgreSQLRepositoryTests
-    {
-        [TestMethod]
-        public async Task SaveGameAsync_SavesGame()
-        {
-            //Arrange
-            var dbContextOptions = new DbContextOptionsBuilder<PostgreSQLDbContext>()
-                .UseInMemoryDatabase("mockdb")
-                .Options;
-            var dbContext = new PostgreSQLDbContext(dbContextOptions);
-            var repository = new PostgreSQLRepository(dbContext);
-            var game = Game.Start();
+	[TestClass]
+	public class PostgreSQLRepositoryTests
+	{
+		[TestMethod]
+		public async Task SaveMatchAsync_SavesMatch()
+		{
+			//Arrange
+			var dbContextOptions = new DbContextOptionsBuilder<MatchDbContext>()
+				.UseInMemoryDatabase("mockdb")
+				.Options;
+			var dbContext = new MatchDbContext(dbContextOptions);
+			var repository = new MatchRepository(dbContext);
+			var match = Match.Start(1);
 
-            //Act
-            await repository.SaveGameAsync(game);
-            var result = await repository.LoadGameAsync(game.Id);
+			//Act
+			await repository.SaveMatchAsync(match);
+			var result = await repository.LoadMatchAsync(match.Id);
 
-            //Assert
-            result.Should().NotBeNull();
-        }
+			//Assert
+			result.Should().NotBeNull();
+		}
 
-        [TestMethod]
-        public async Task SaveGameAsync_SavesFrames()
-        {
-            //Arrange
-            var dbContextOptions = new DbContextOptionsBuilder<PostgreSQLDbContext>()
-                .UseInMemoryDatabase("mockdb")
-                .Options;
-            var dbContextMock = new PostgreSQLDbContext(dbContextOptions);
-            var repository = new PostgreSQLRepository(dbContextMock);
-            var game = Game.Start();
+		[TestMethod]
+		public async Task SavematchAsync_SavesGames()
+		{
+			//Arrange
+			var dbContextOptions = new DbContextOptionsBuilder<MatchDbContext>()
+				.UseInMemoryDatabase("mockdb")
+				.Options;
+			var dbContext = new MatchDbContext(dbContextOptions);
+			var repository = new MatchRepository(dbContext);
+			var match = Match.Start(1);
 
-            //Act
-            await repository.SaveGameAsync(game);
-            var result = await repository.LoadGameAsync(game.Id);
+			//Act
+			await repository.SaveMatchAsync(match);
+			var result = await repository.LoadMatchAsync(match.Id);
 
-            //Assert
-            result.Should().NotBeNull();
-            result.Frames.Should().NotBeNull();
-            result.Frames.First().Key.Should().Be(1);
-            result.Frames.First().Value.GetType().Should().Be(typeof(NormalFrame));
-            result.Frames.Last().Key.Should().Be(10);
-            result.Frames.Last().Value.GetType().Should().Be(typeof(FinalFrame));
-        }
+			//Assert
+			result.Should().NotBeNull();
+			var resultGame = result.Games.First().Value;
+			resultGame.Frames.Should().NotBeNull();
+			resultGame.Frames.First().Key.Should().Be(1);
+			resultGame.Frames.First().Value.GetType().Should().Be(typeof(NormalFrame));
+			resultGame.Frames.Last().Key.Should().Be(10);
+			resultGame.Frames.Last().Value.GetType().Should().Be(typeof(FinalFrame));
+		}
 
-        [TestMethod]
-        public async Task SaveGameAsync_MapsNormalFramesCorrectly()
-        {
-            //Arrange
-            var dbContextOptions = new DbContextOptionsBuilder<PostgreSQLDbContext>()
-                .UseInMemoryDatabase("mockdb")
-                .Options;
-            var dbContextMock = new PostgreSQLDbContext(dbContextOptions);
-            var repository = new PostgreSQLRepository(dbContextMock);
-            var game = Game.Start();
-            game.AddRoll(3);
-            game.AddRoll(2);
+		[TestMethod]
+		public async Task SaveMatchAsync_MapsNormalFramesCorrectly()
+		{
+			//Arrange
+			var dbContextOptions = new DbContextOptionsBuilder<MatchDbContext>()
+				.UseInMemoryDatabase("mockdb")
+				.Options;
+			var dbContext = new MatchDbContext(dbContextOptions);
+			var repository = new MatchRepository(dbContext);
+			var match = Match.Start(1);
+			match.AddRoll(1);
+			match.AddRoll(2);
 
-            //Act
-            await repository.SaveGameAsync(game);
-            var result = await repository.LoadGameAsync(game.Id);
+			//Act
+			await repository.SaveMatchAsync(match);
+			var result = await repository.LoadMatchAsync(match.Id);
 
-            //Assert
-            result.Should().NotBeNull();
-            result.Frames.Should().NotBeNull();
-            result.Frames.First().Should().NotBeNull();
-            result.Frames.First().Value.Should().BeEquivalentTo(game.Frames.First().Value);
-        }
-    }
+			//Assert
+			result.Should().NotBeNull();
+			var resultGame = result.Games.First().Value;
+			resultGame.Frames.Should().NotBeNull();
+			resultGame.Frames.First().Should().NotBeNull();
+			resultGame.Frames.First().Value.Should().BeEquivalentTo(match.Games.First().Value.Frames.First().Value);
+		}
+	}
 }

@@ -2,38 +2,39 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using OverlyComplicatedBowling.Infrastructure.Repositories;
+using OverlyComplicatedBowling.Infrastructure.Repositories.MatchRepository;
 
 #nullable disable
 
 namespace OverlyComplicatedBowling.Infrastructure.Migrations.Migrations
 {
-    [DbContext(typeof(PostgreSQLDbContext))]
-    [Migration("20240506183533_Init")]
-    partial class Init
+    [DbContext(typeof(MatchDbContext))]
+    partial class MatchDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("OverlyComplicatedBowling.Domain.Games.Game", b =>
+            modelBuilder.Entity("OverlyComplicatedBowling.Domain.Matches.Match", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Games")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Games");
+                    b.ToTable("Matches");
                 });
 #pragma warning restore 612, 618
         }
