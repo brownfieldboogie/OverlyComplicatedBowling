@@ -33,6 +33,11 @@ namespace OverlyComplicatedBowling.Domain.Matches
 			IdOfActiveGame = _games[GetKeyOfActiveGame()].Id;
 		}
 
+		public Game GetActiveGame()
+		{
+			return _games[GetKeyOfActiveGame()];
+		}
+
 		public int GetKeyOfActiveGame()
 		{
 			return _games.Aggregate((g1, g2) => g1.Value.GetKeyOfActiveFrame() <= g2.Value.GetKeyOfActiveFrame() ? g1 : g2).Key;

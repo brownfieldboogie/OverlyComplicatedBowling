@@ -21,15 +21,15 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.MapGet("/StartGame", async (IGameService gameService) =>
+app.MapGet("/StartMatch", async (IMatchService matchService, int numberOfPlayers) =>
 {
-	return Results.Ok(await gameService.StartGameAsync());
+	return Results.Ok(await matchService.StartMatchAsync(numberOfPlayers));
 })
 .WithName("StartGame").WithOpenApi();
 
-app.MapPost("/AddRoll/{gameId}", async (IGameService gameService, Guid gameId) =>
+app.MapPost("/AddRoll/{matchId}", async (IMatchService matchService, Guid matchId) =>
 {
-	return await gameService.AddRollAsync(gameId) is { } updatedGame ? Results.Ok(updatedGame) : Results.NotFound();
+	return await matchService.AddRollAsync(matchId) is { } updatedMatch ? Results.Ok(updatedMatch) : Results.NotFound();
 })
 .WithName("AddRoll").WithOpenApi();
 
