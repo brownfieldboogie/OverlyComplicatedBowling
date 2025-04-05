@@ -13,7 +13,8 @@ namespace OverlyComplicatedBowling.Application.Games.Mapping
 			AccumulatedScore = frame.AccumulatedScore,
 			Scored = frame.Scored,
 			Completed = frame.Completed,
-			RemainingPins = frame.RemainingPins
+			RemainingPins = frame.RemainingPins,
+			Index = frame.Index
 		};
 	}
 }

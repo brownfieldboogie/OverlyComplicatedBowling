@@ -7,7 +7,7 @@ using OverlyComplicatedBowling.Infrastructure.Repositories.MatchRepository;
 namespace OverlyComplicatedBowling.Infrastructure.Tests.Repositories
 {
 	[TestClass]
-	public class PostgreSQLRepositoryTests
+	public class MatchRepositoryTests
 	{
 		[TestMethod]
 		public async Task SaveMatchAsync_SavesMatch()
@@ -45,12 +45,12 @@ namespace OverlyComplicatedBowling.Infrastructure.Tests.Repositories
 
 			//Assert
 			result.Should().NotBeNull();
-			var resultGame = result.Games.First().Value;
+			var resultGame = result.Games.First();
 			resultGame.Frames.Should().NotBeNull();
-			resultGame.Frames.First().Key.Should().Be(1);
-			resultGame.Frames.First().Value.GetType().Should().Be(typeof(NormalFrame));
-			resultGame.Frames.Last().Key.Should().Be(10);
-			resultGame.Frames.Last().Value.GetType().Should().Be(typeof(FinalFrame));
+			resultGame.Frames.First().Index.Should().Be(0);
+			resultGame.Frames.First().GetType().Should().Be(typeof(NormalFrame));
+			resultGame.Frames.Last().Index.Should().Be(9);
+			resultGame.Frames.Last().GetType().Should().Be(typeof(FinalFrame));
 		}
 
 		[TestMethod]
@@ -72,10 +72,10 @@ namespace OverlyComplicatedBowling.Infrastructure.Tests.Repositories
 
 			//Assert
 			result.Should().NotBeNull();
-			var resultGame = result.Games.First().Value;
+			var resultGame = result.Games.First();
 			resultGame.Frames.Should().NotBeNull();
 			resultGame.Frames.First().Should().NotBeNull();
-			resultGame.Frames.First().Value.Should().BeEquivalentTo(match.Games.First().Value.Frames.First().Value);
+			resultGame.Frames.First().Should().BeEquivalentTo(match.Games.First().Frames.First());
 		}
 	}
 }

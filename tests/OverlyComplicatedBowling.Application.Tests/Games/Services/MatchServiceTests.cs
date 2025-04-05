@@ -19,9 +19,9 @@ namespace OverlyComplicatedBowling.Application.Tests.Games.Services
 			var matchDto = await matchService.StartMatchAsync(1);
 
 			//Assert
-			matchDto.Games.First().Value.Frames.Should().HaveCount(10);
-			matchDto.Games.First().Value.Frames.Values.Should().AllSatisfy(f => f.Rolls.Values.Should().BeEmpty());
-			matchDto.Games.First().Value.Frames.Values.Should().AllSatisfy(f => f.Completed.Should().BeFalse());
+			matchDto.Games.First().Frames.Should().HaveCount(10);
+			matchDto.Games.First().Frames.Should().AllSatisfy(f => f.Rolls.Values.Should().BeEmpty());
+			matchDto.Games.First().Frames.Should().AllSatisfy(f => f.Completed.Should().BeFalse());
 		}
 
 		[TestMethod]
@@ -40,8 +40,8 @@ namespace OverlyComplicatedBowling.Application.Tests.Games.Services
 			var updatedMatchDto = await matchService.AddRollAsync(Guid.NewGuid());
 
 			//Assert
-			updatedMatchDto.Games.First().Value.Frames.First().Value.Completed.Should().BeTrue();
-			updatedMatchDto.Games.First().Value.Frames.First().Value.Rolls.Values.First().IsStrike.Should().BeTrue();
+			updatedMatchDto.Games.First().Frames.First().Completed.Should().BeTrue();
+			updatedMatchDto.Games.First().Frames.First().Rolls.Values.First().IsStrike.Should().BeTrue();
 		}
 	}
 }

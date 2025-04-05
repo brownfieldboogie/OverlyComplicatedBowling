@@ -6,6 +6,6 @@ namespace OverlyComplicatedBowling.Presentation.Web.Components.Shared
 	public class GameBase : ComponentBase
 	{
 		[Parameter]
-		public SortedDictionary<int, FrameDto> Frames { get; set; }
+		public List<FrameDto> Frames { get; set; }
 	}
 }

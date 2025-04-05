@@ -17,8 +17,8 @@ namespace OverlyComplicatedBowling.Domain.Tests.Matches
 
 			//Assert
 			match.Games.Should().HaveCount(numberOfPlayers);
-			match.Games.Values.Select(g => g.Id).Should().OnlyHaveUniqueItems();
-			match.IdOfActiveGame.Should().Be(match.Games.First().Value.Id);
+			match.Games.Select(g => g.Id).Should().OnlyHaveUniqueItems();
+			match.IdOfActiveGame.Should().Be(match.Games.First().Id);
 		}
 
 		[TestMethod]
@@ -29,7 +29,7 @@ namespace OverlyComplicatedBowling.Domain.Tests.Matches
 			match.AddRoll(1);
 
 			//Act
-			var keyOfActiveGame = match.GetKeyOfActiveGame();
+			var keyOfActiveGame = match.GetIndexOfActiveGame();
 
 			//Assert
 			keyOfActiveGame.Should().Be(0);
@@ -43,7 +43,7 @@ namespace OverlyComplicatedBowling.Domain.Tests.Matches
 			match.AddRoll(10);
 
 			//Act
-			var keyOfActiveGame = match.GetKeyOfActiveGame();
+			var keyOfActiveGame = match.GetIndexOfActiveGame();
 
 			//Assert
 			keyOfActiveGame.Should().Be(1);
@@ -58,8 +58,8 @@ namespace OverlyComplicatedBowling.Domain.Tests.Matches
 			//Act
 			match.AddRoll(1);
 
-			//Assert
-			match.IdOfActiveGame.Should().Be(match.Games.First().Value.Id);
+			//Assert	
+			match.IdOfActiveGame.Should().Be(match.Games.First().Id);
 		}
 	}
 }

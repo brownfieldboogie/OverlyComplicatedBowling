@@ -19,7 +19,7 @@ namespace OverlyComplicatedBowling.Application.Tests.Games.Mapping
 
 			//Assert
 			matchDto.Id.Should().Be(match.Id);
-			matchDto.Games.Values.First().Frames.Values.First().RemainingPins.Should().Be(0);
+			matchDto.Games.First().Frames.First().RemainingPins.Should().Be(0);
 			matchDto.IdOfActiveGame.Should().Be(matchDto.Games[1].Id);
 		}
 	}

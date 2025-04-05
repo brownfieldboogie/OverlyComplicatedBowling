@@ -15,7 +15,9 @@ namespace OverlyComplicatedBowling.Infrastructure.Repositories.MatchRepository
 
 		public async Task<Match?> LoadMatchAsync(Guid Id)
 		{
-			return await _matchDbContext.Matches.FirstOrDefaultAsync(g => g.Id == Id);
+			var games = await _matchDbContext.Games.ToListAsync();
+
+			return await _matchDbContext.Matches.Include(match => (match as Match).Games).FirstOrDefaultAsync(g => g.Id == Id);
 		}
 
 		public async Task SaveMatchAsync(Match match)
@@ -25,10 +27,12 @@ namespace OverlyComplicatedBowling.Infrastructure.Repositories.MatchRepository
 			if (entry is null)
 			{
 				await _matchDbContext.Matches.AddAsync(match);
+				await _matchDbContext.Games.AddRangeAsync([.. match.Games]);
 			}
 			else
 			{
 				_matchDbContext.Matches.Update(match);
+				_matchDbContext.Games.UpdateRange([.. match.Games]);
 			}
 
 			await _matchDbContext.SaveChangesAsync();

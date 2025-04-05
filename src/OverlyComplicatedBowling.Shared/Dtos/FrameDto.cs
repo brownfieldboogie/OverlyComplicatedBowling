@@ -9,5 +9,6 @@
 		public bool Scored { get; set; }
 		public bool Completed { get; set; }
 		public int RemainingPins { get; set; }
+		public int Index { get; set; }
 	}
 }

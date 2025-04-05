@@ -12,7 +12,8 @@
 				AccumulatedScore = 0,
 				Scored = false,
 				Completed = false,
-				RemainingPins = 10
+				RemainingPins = 10,
+				Index = 9
 			};
 		}
 

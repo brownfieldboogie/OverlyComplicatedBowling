@@ -2,7 +2,7 @@
 {
 	public class NormalFrame : Frame
 	{
-		internal static NormalFrame Create()
+		internal static NormalFrame Create(int index)
 		{
 			return new NormalFrame
 			{
@@ -12,7 +12,8 @@
 				AccumulatedScore = 0,
 				Scored = false,
 				Completed = false,
-				RemainingPins = 10
+				RemainingPins = 10,
+				Index = index
 			};
 		}
 

@@ -8,7 +8,7 @@ namespace OverlyComplicatedBowling.Application.Games.Mapping
 		public static MatchDto MapDto(Match match) => new()
 		{
 			Id = match.Id,
-			Games = new SortedDictionary<int, GameDto>(match.Games.ToDictionary(pair => pair.Key, pair => GameDtoMapper.MapDto(pair.Value))),
+			Games = [.. match.Games.Select(GameDtoMapper.MapDto)],
 			IdOfActiveGame = match.IdOfActiveGame
 		};
 	}

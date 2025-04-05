@@ -14,13 +14,27 @@ namespace OverlyComplicatedBowling.Infrastructure.Repositories.MatchRepository
 		{
 			base.OnModelCreating(modelBuilder);
 
-			modelBuilder.Entity<Match>()
-				.Property(g => g.Games)
-				.HasConversion(
-					v => JsonConvert.SerializeObject(v, JsonSettings.TypeNameHandlingAuto),
-					v => JsonConvert.DeserializeObject<SortedDictionary<int, Game>>(v, JsonSettings.TypeNameHandlingAuto));
+			modelBuilder.Entity<Match>(match =>
+			{
+				match.HasKey(m => m.Id);
+
+				match.HasMany<Game>().WithOne().HasForeignKey("MatchId").OnDelete(DeleteBehavior.Cascade);
+
+				match.Property(m => m.IdOfActiveGame);
+			});
+
+			modelBuilder.Entity<Game>(game =>
+			{
+				game.HasKey(g => g.Id);
+
+				game.Property(g => g.Frames)
+					.HasConversion(
+						v => JsonConvert.SerializeObject(v, JsonSettings.TypeNameHandlingAuto),
+						v => JsonConvert.DeserializeObject<List<Frame>>(v, JsonSettings.TypeNameHandlingAuto));
+			});
 		}
 
 		public DbSet<Match> Matches { get; set; }
+		public DbSet<Game> Games { get; set; }
 	}
 }

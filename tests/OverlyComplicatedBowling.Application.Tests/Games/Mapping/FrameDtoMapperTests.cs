@@ -11,9 +11,9 @@ namespace OverlyComplicatedBowling.Application.Tests.Games.Mapping
 		public void MapDto_MapsFrameToFrameDto()
 		{
 			//Arrange
-			var game = Game.Start();
+			var game = Game.Start(0);
 			game.AddRoll(5);
-			var frame = game.Frames.First().Value;
+			var frame = game.Frames.First();
 
 			//Act
 			var frameDto = FrameDtoMapper.MapDto(frame);

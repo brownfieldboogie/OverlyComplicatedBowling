@@ -9,7 +9,7 @@ namespace OverlyComplicatedBowling.Presentation.Web.Components.Pages
 		[Inject]
 		public IOverlyComplicatedBowlingService OverlyComplicatedBowlingService { get; set; }
 
-		protected SortedDictionary<int, FrameDto> Frames = new();
+		protected List<FrameDto> Frames = [];
 		private Guid _gameId;
 		protected bool GameStarted { get; set; }
 		protected bool GameCompleted { get; set; }

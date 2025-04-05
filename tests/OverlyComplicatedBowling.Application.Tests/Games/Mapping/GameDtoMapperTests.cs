@@ -11,7 +11,7 @@ namespace OverlyComplicatedBowling.Application.Tests.Games.Mapping
 		public void MapDto_MapsGameToGameDto()
 		{
 			//Arrange
-			var game = Game.Start();
+			var game = Game.Start(0);
 			var rollValue = 3;
 			game.AddRoll(rollValue);
 			game.AddRoll(rollValue);
@@ -21,7 +21,7 @@ namespace OverlyComplicatedBowling.Application.Tests.Games.Mapping
 
 			//Assert
 			gameDto.Id.Should().Be(game.Id);
-			gameDto.Frames.Values.First().Rolls.Count.Should().Be(game.Frames.Values.First().Rolls.Count);
+			gameDto.Frames.First().Rolls.Count.Should().Be(game.Frames.First().Rolls.Count);
 			gameDto.GameCompleted.Should().Be(game.IsGameCompleted());
 			gameDto.TotalScore.Should().Be(rollValue * 2);
 		}

@@ -2,7 +2,7 @@
 @using OverlyComplicatedBowling.Shared.Dtos
 
 <div class="game">
-	@foreach(FrameDto frame in Frames.Values)
+	@foreach(FrameDto frame in Frames)
 	{
 		<Frame Rolls="frame.Rolls" MaxRolls="frame.MaxRolls" Scored="frame.Scored" AccumulatedScore="frame.AccumulatedScore" />
 	}

@@ -11,6 +11,7 @@
 		public virtual bool Scored { get; set; }
 		public virtual bool Completed { get; set; }
 		public virtual int RemainingPins { get; set; }
+		public virtual int Index { get; set; }
 
 		public abstract void AddRoll(int knockedPins);
 		public abstract void UpdateScore(Roll[]? subsequentRolls = null);

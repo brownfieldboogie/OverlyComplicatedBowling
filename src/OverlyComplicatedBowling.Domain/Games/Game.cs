@@ -1,65 +1,65 @@
-﻿using System.Collections.ObjectModel;
-
-namespace OverlyComplicatedBowling.Domain.Games
+﻿namespace OverlyComplicatedBowling.Domain.Games
 {
 	public class Game
 	{
 		public Guid Id { get; private set; } = Guid.NewGuid();
-		internal SortedDictionary<int, Frame> _frames = [];
-		public IReadOnlyDictionary<int, Frame> Frames => new ReadOnlyDictionary<int, Frame>(_frames);
+		public List<Frame> Frames { get; set; }
 		public int TotalScore;
+		public int Index;
 
-		public static Game Start()
+		public static Game Start(int index)
 		{
 			var game = new Game();
+			game.Frames = [];
 			game.CreateFrames();
 			game.TotalScore = 0;
+			game.Index = index;
 			return game;
 		}
 
 		private void CreateFrames()
 		{
-			for (int i = 1; i <= 10; i++)
+			for (int i = 0; i <= 9; i++)
 			{
-				Frame frame = i == 10 ? FinalFrame.Create() : NormalFrame.Create();
-				_frames.Add(i, frame);
+				Frame frame = i == 9 ? FinalFrame.Create() : NormalFrame.Create(i);
+				Frames.Add(frame);
 			}
 		}
 
 		public bool IsGameCompleted()
 		{
-			return _frames.All(f => f.Value.Completed);
+			return Frames.All(f => f.Completed);
 		}
 
 		public int GetRemainingPinsOnActiveFrame()
 		{
-			return _frames[GetKeyOfActiveFrame()].RemainingPins;
+			return Frames[GetIndexOfActiveFrame()].RemainingPins;
 		}
 
 		public void AddRoll(int knockedPins)
 		{
-			_frames[GetKeyOfActiveFrame()].AddRoll(knockedPins);
+			Frames[GetIndexOfActiveFrame()].AddRoll(knockedPins);
 
-			for (int i = 1; i <= _frames.Count; i++)
+			for (int i = 0; i <= Frames.Count - 1; i++)
 			{
 				UpdateScore(i);
 			}
 		}
 
-		public int GetKeyOfActiveFrame()
+		public int GetIndexOfActiveFrame()
 		{
-			return _frames.First(f => !f.Value.Completed).Key;
+			return Frames.First(f => !f.Completed).Index;
 		}
 
-		private void UpdateScore(int frameKey)
+		private void UpdateScore(int frameIndex)
 		{
-			var frame = _frames[frameKey];
+			var frame = Frames[frameIndex];
 
 			if (frame.Scored) return;
 
 			if (frame is NormalFrame)
 			{
-				var subsequentRolls = _frames.Skip(frameKey).SelectMany(f => f.Value.Rolls.Values).ToArray();
+				var subsequentRolls = Frames.Skip(frameIndex).SelectMany(f => f.Rolls.Values).ToArray();
 				frame.UpdateScore(subsequentRolls);
 			}
 			else if (frame is FinalFrame)
@@ -67,7 +67,7 @@ namespace OverlyComplicatedBowling.Domain.Games
 				frame.UpdateScore();
 			}
 
-			var accumulatedScore = _frames.TakeWhile(f => f.Key <= frameKey).Sum(f => f.Value.Score);
+			var accumulatedScore = Frames.TakeWhile(f => f.Index <= frameIndex).Sum(f => f.Score);
 			frame.UpdateAccumulatedScore(accumulatedScore);
 			TotalScore = accumulatedScore;
 		}
