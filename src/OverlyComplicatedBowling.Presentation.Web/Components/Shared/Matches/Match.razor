@@ -1,0 +1,20 @@
+﻿@inherits MatchBase
+@using OverlyComplicatedBowling.Shared.Dtos
+@using OverlyComplicatedBowling.Presentation.Web.Components.Shared.Games
+
+<div class="match">
+	@foreach(GameDto game in Match.Games.OrderBy(g => g.Index))
+	{
+		<div class="game-view">
+			@if(game.Id == Match.IdOfActiveGame && !game.GameCompleted)
+			{
+				<img src="images\roll.jpg" @onclick="() => AddRoll(Match.Id, game.Id)" class="roll-button" title="Roll!" disabled="@IsRolling" />
+			} else
+			{
+				<div class="roll-button-filler" />
+			}
+
+			<Game Frames="game.Frames" />
+		</div>
+	}
+</div>

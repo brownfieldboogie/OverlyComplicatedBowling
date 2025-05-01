@@ -6,42 +6,39 @@ namespace OverlyComplicatedBowling.Presentation.Web.Components.Pages
 {
 	public class HomeBase : ComponentBase
 	{
-		[Inject]
-		public IOverlyComplicatedBowlingService OverlyComplicatedBowlingService { get; set; }
+		[Inject] public IOverlyComplicatedBowlingService OverlyComplicatedBowlingService { get; set; }
 
 		protected List<FrameDto> Frames = [];
-		private Guid _gameId;
-		protected bool GameStarted { get; set; }
-		protected bool GameCompleted { get; set; }
+		protected MatchDto Match { get; set; }
+		protected bool MatchStarted { get; set; }
+		protected bool MatchCompleted { get; set; }
 		protected string StartButtonText { get; set; }
-
 		protected string Message { get; set; }
+		protected int NumberOfPlayers { get; set; }
 
 		protected override void OnInitialized()
 		{
 			Message = "Are you ready to bowl the night away?";
 			StartButtonText = "Start game";
+			NumberOfPlayers = 1;
+			MatchStarted = false;
+			MatchCompleted = false;
 			base.OnInitialized();
 		}
 
 		protected async Task StartGame()
 		{
-			var newGame = await OverlyComplicatedBowlingService.StartGameAsync();
+			var newMatch = await OverlyComplicatedBowlingService.StartMatchAsync(NumberOfPlayers);
 			Message = "Lets go!";
-			StartButtonText = "Restart game!";
+			StartButtonText = "New game!";
+			MatchStarted = true;
 
-			Frames = newGame.Frames;
-			_gameId = newGame.Id;
-			GameStarted = true;
-			GameCompleted = newGame.GameCompleted;
-		}
-
-		protected async Task AddRoll()
-		{
-			var updatedGame = await OverlyComplicatedBowlingService.AddRollAsync(_gameId);
-
-			Frames = updatedGame.Frames;
-			GameCompleted = updatedGame.GameCompleted;
-		}
+			Match = new MatchDto
+            {
+                Id = newMatch.Id,
+                IdOfActiveGame = newMatch.IdOfActiveGame,
+                Games = newMatch.Games
+            };
+        }
 	}
 }

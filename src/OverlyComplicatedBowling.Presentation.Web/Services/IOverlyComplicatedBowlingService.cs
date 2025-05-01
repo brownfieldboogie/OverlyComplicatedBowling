@@ -4,7 +4,7 @@ namespace OverlyComplicatedBowling.Presentation.Web.Services
 {
 	public interface IOverlyComplicatedBowlingService
 	{
-		Task<GameDto> StartGameAsync();
-		Task<GameDto> AddRollAsync(Guid gameId);
+		Task<MatchDto> StartMatchAsync(int numberOfPlayers);
+		Task<MatchDto> AddRollAsync(Guid matchId, Guid gameId);
 	}
 }

@@ -22,21 +22,22 @@ namespace OverlyComplicatedBowling.Domain.Tests.Matches
 		}
 
 		[TestMethod]
-		public void Match_GetKeyOfActiveGame_CanCalculateKeyOfActiveGame()
+		public void Match_GetIndexOfActiveGame_CanCalculateIndexOfActiveGame()
 		{
 			//Arrange
 			var match = Match.Start(2);
 			match.AddRoll(1);
+			match.AddRoll(1);
 
 			//Act
-			var keyOfActiveGame = match.GetIndexOfActiveGame();
+			var indexOfActiveGame = match.GetIndexOfActiveGame();
 
 			//Assert
-			keyOfActiveGame.Should().Be(0);
+			indexOfActiveGame.Should().Be(1);
 		}
 
 		[TestMethod]
-		public void Match_GetKeyOfActiveGame_CanCalculateKeyOfActiveGameIfStrike()
+		public void Match_GetIndexOfActiveGame_CanCalculateIndexOfActiveGameIfStrike()
 		{
 			//Arrange
 			var match = Match.Start(2);

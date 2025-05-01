@@ -1,7 +1,8 @@
 ﻿@page "/"
 @inherits HomeBase
-@using OverlyComplicatedBowling.Presentation.Web.Components.Shared
 @using OverlyComplicatedBowling.Shared.Dtos
+@using OverlyComplicatedBowling.Presentation.Web.Components.Shared.Common
+@using OverlyComplicatedBowling.Presentation.Web.Components.Shared.Matches
 
 <PageTitle>OverlyComplicatedBowling</PageTitle>
 
@@ -9,17 +10,17 @@
 	<img src="images\banner.jpg" />
 	<h1>Bowling!</h1>
 	<h3>@Message</h3>
-	<button @onclick="StartGame">
-		@StartButtonText
-	</button>
 
-	<div class="game-view">
+	<div class="controls-view">
+		<InputCounter Message="How many players?" Value="@NumberOfPlayers" MinValue="1" DefaultValue="NumberOfPlayers" ValueChanged="@(v => NumberOfPlayers = v)"/>
 
-		@if(@GameStarted && !@GameCompleted) 
-		{
-			<img src="images\roll.jpg" @onclick="AddRoll" class="roll-button" title="Roll!" />
-		}
-
-		<Game Frames="@Frames" />
+		<button @onclick="StartGame">
+			@StartButtonText
+		</button>
 	</div>
+
+	@if (MatchStarted)
+	{
+		<Match Match="@Match"/>		
+	}
 </div>

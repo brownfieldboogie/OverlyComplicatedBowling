@@ -5,6 +5,6 @@ namespace OverlyComplicatedBowling.Application.Interfaces
 	public interface IMatchService
 	{
 		Task<MatchDto> StartMatchAsync(int numberOfPlayers);
-		Task<MatchDto> AddRollAsync(Guid matchId);
+		Task<MatchDto> AddRollAsync(Guid matchId, Guid gameId);
 	}
 }

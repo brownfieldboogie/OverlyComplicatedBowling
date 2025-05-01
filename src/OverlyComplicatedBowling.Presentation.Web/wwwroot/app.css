@@ -11,7 +11,7 @@ html, body {
     gap: 10px;
 }
 
-.game-view {
+.controls-view {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -19,8 +19,22 @@ html, body {
     gap: 10px;
 }
 
+.game-view {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
 .roll-button {
     cursor: pointer;
+    height: 60px;
+    width: 60px;
+}
+
+.roll-button-filler {
     height: auto;
     width: 60px;
 }
@@ -41,7 +55,7 @@ a, .btn-link {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 .content {

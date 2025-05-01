@@ -10,7 +10,8 @@ namespace OverlyComplicatedBowling.Application.Games.Mapping
 			Id = game.Id,
 			Frames = [.. game.Frames.Select(FrameDtoMapper.MapDto)],
 			GameCompleted = game.IsGameCompleted(),
-			TotalScore = game.TotalScore
+			TotalScore = game.TotalScore,
+			Index = game.Index
 		};
 	}
 }

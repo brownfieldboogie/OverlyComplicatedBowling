@@ -25,11 +25,11 @@ app.MapGet("/StartMatch", async (IMatchService matchService, int numberOfPlayers
 {
 	return Results.Ok(await matchService.StartMatchAsync(numberOfPlayers));
 })
-.WithName("StartGame").WithOpenApi();
+.WithName("StartMatch").WithOpenApi();
 
-app.MapPost("/AddRoll/{matchId}", async (IMatchService matchService, Guid matchId) =>
+app.MapPost("/AddRoll/{matchId}/{gameId}", async (IMatchService matchService, Guid matchId, Guid gameId) =>
 {
-	return await matchService.AddRollAsync(matchId) is { } updatedMatch ? Results.Ok(updatedMatch) : Results.NotFound();
+	return await matchService.AddRollAsync(matchId, gameId) is { } updatedMatch ? Results.Ok(updatedMatch) : Results.NotFound();
 })
 .WithName("AddRoll").WithOpenApi();
 

@@ -31,6 +31,9 @@ namespace OverlyComplicatedBowling.Infrastructure.Repositories.MatchRepository
 					.HasConversion(
 						v => JsonConvert.SerializeObject(v, JsonSettings.TypeNameHandlingAuto),
 						v => JsonConvert.DeserializeObject<List<Frame>>(v, JsonSettings.TypeNameHandlingAuto));
+
+				game.Property(g => g.TotalScore);
+				game.Property(g => g.Index);
 			});
 		}
 

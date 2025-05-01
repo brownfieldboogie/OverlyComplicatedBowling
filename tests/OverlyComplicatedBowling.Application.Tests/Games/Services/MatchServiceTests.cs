@@ -37,7 +37,7 @@ namespace OverlyComplicatedBowling.Application.Tests.Games.Services
 			var matchService = new MatchService(bowlingRollWebservice, matchRepository);
 
 			//Act
-			var updatedMatchDto = await matchService.AddRollAsync(Guid.NewGuid());
+			var updatedMatchDto = await matchService.AddRollAsync(match.Id, match.Games.First().Id);
 
 			//Assert
 			updatedMatchDto.Games.First().Frames.First().Completed.Should().BeTrue();

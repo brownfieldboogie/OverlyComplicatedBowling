@@ -10,10 +10,12 @@ namespace OverlyComplicatedBowling.Domain.Matches
 
 		public static Match Start(int numberOfPlayers)
 		{
-			var match = new Match();
-			match.Games = [];
-			match.CreateGames(numberOfPlayers);
-			match.IdOfActiveGame = match.Games.First().Id;
+            var match = new Match
+            {
+                Games = []
+            };
+            match.CreateGames(numberOfPlayers);
+			match.IdOfActiveGame = match.Games.First(g => g.Index == 0).Id;
 			return match;
 		}
 
@@ -28,18 +30,13 @@ namespace OverlyComplicatedBowling.Domain.Matches
 
 		public void AddRoll(int knockedPins)
 		{
-			Games[GetIndexOfActiveGame()].AddRoll(knockedPins);
-			IdOfActiveGame = Games[GetIndexOfActiveGame()].Id;
-		}
-
-		public Game GetActiveGame()
-		{
-			return Games[GetIndexOfActiveGame()];
+			Games.First(g => g.Index == GetIndexOfActiveGame()).AddRoll(knockedPins);
+			IdOfActiveGame = Games.First(g => g.Index == GetIndexOfActiveGame()).Id;
 		}
 
 		public int GetIndexOfActiveGame()
 		{
-			return Games.Aggregate((g1, g2) => g1.GetIndexOfActiveFrame() <= g2.GetIndexOfActiveFrame() ? g1 : g2).Index;
+			return Games.OrderBy(g => g.Index).Aggregate((g1, g2) => g1.GetIndexOfActiveFrame() <= g2.GetIndexOfActiveFrame() ? g1 : g2).Index;
 		}
 	}
 }

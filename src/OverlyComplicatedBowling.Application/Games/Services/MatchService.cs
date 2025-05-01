@@ -25,7 +25,7 @@ namespace OverlyComplicatedBowling.Application.Games.Services
 			return MatchDtoMapper.MapDto(match);
 		}
 
-		public async Task<MatchDto> AddRollAsync(Guid matchId)
+		public async Task<MatchDto> AddRollAsync(Guid matchId, Guid gameId)
 		{
 			var match = await _matchRepository.LoadMatchAsync(matchId);
 
@@ -34,9 +34,9 @@ namespace OverlyComplicatedBowling.Application.Games.Services
 				throw new ArgumentNullException(nameof(match));
 			}
 
-			var activeGame = match.GetActiveGame();
+			var activeGame = match.Games.FirstOrDefault(g => g.Id == gameId) ?? throw new InvalidOperationException($"Game with ID {gameId} not found in the match.");
 
-			if (activeGame.IsGameCompleted())
+            if (activeGame.IsGameCompleted())
 			{
 				return MatchDtoMapper.MapDto(match);
 			}

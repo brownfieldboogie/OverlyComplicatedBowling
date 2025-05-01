@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using Newtonsoft.Json;
 using OverlyComplicatedBowling.Shared.Dtos;
 
 namespace OverlyComplicatedBowling.Presentation.Web.Services
@@ -12,20 +13,32 @@ namespace OverlyComplicatedBowling.Presentation.Web.Services
 			_httpClient = httpClient;
 		}
 
-		public async Task<GameDto> StartGameAsync()
+		public async Task<MatchDto> StartMatchAsync(int numberOfPlayers)
 		{
-			var result = await _httpClient.GetAsync("/StartGame");
+			var url = QueryHelpers.AddQueryString("StartMatch", new Dictionary<string, string?>
+			{
+				{ "numberOfPlayers", numberOfPlayers.ToString() }
+			});
+
+
+			var result = await _httpClient.GetAsync(url);
+
+			result.EnsureSuccessStatusCode();
+
 			var resultContent = await result.Content.ReadAsStringAsync();
-			var resultContentConverted = JsonConvert.DeserializeObject<GameDto>(resultContent);
+			var resultContentConverted = JsonConvert.DeserializeObject<MatchDto>(resultContent) ?? throw new InvalidOperationException();
 
 			return resultContentConverted;
 		}
 
-		public async Task<GameDto> AddRollAsync(Guid gameId)
+		public async Task<MatchDto> AddRollAsync(Guid matchId, Guid gameId)
 		{
-			var result = await _httpClient.PostAsync($"/AddRoll/{gameId}", null);
+			var result = await _httpClient.PostAsync($"/AddRoll/{matchId}/{gameId}", null);
+
+			result.EnsureSuccessStatusCode();
+
 			var resultContent = await result.Content.ReadAsStringAsync();
-			var resultContentConverted = JsonConvert.DeserializeObject<GameDto>(resultContent);
+			var resultContentConverted = JsonConvert.DeserializeObject<MatchDto>(resultContent) ?? throw new InvalidOperationException();
 
 			return resultContentConverted;
 		}

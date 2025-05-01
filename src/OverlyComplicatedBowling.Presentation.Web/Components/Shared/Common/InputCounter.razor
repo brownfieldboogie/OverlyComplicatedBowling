@@ -1,0 +1,8 @@
+﻿@inherits InputCounterBase
+
+<div class="input-counter">
+	<span>@Message</span>
+	<button @onclick="Decrease" disabled="@(Value <= MinValue)">-</button>
+	<span>@Value</span>
+	<button @onclick="Increase">+</button>
+</div>
