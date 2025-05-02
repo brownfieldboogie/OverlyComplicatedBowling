@@ -48,7 +48,7 @@
 
 		public int GetIndexOfActiveFrame()
 		{
-			return Frames.First(f => !f.Completed).Index;
+			return Frames.FirstOrDefault(f => !f.Completed)?.Index ?? 10;
 		}
 
 		private void UpdateScore(int frameIndex)
