@@ -15,27 +15,37 @@ namespace OverlyComplicatedBowling.Infrastructure.Repositories.MatchRepository
 
 		public async Task<Match?> LoadMatchAsync(Guid Id)
 		{
-			var games = await _matchDbContext.Games.ToListAsync();
-
 			return await _matchDbContext.Matches.Include(match => (match as Match).Games).FirstOrDefaultAsync(g => g.Id == Id);
 		}
 
 		public async Task SaveMatchAsync(Match match)
 		{
-			Match? entry = await _matchDbContext.Matches.FirstOrDefaultAsync(g => g.Id == match.Id);
+			using var transaction = await _matchDbContext.Database.BeginTransactionAsync();
 
-			if (entry is null)
+			try
 			{
-				await _matchDbContext.Matches.AddAsync(match);
-				await _matchDbContext.Games.AddRangeAsync([.. match.Games]);
-			}
-			else
+				Match? entry = await _matchDbContext.Matches.FirstOrDefaultAsync(g => g.Id == match.Id);
+
+				if (entry is null)
+				{
+					await _matchDbContext.Matches.AddAsync(match);
+					await _matchDbContext.Games.AddRangeAsync([.. match.Games]);
+				}
+				else
+				{
+					_matchDbContext.Matches.Update(match);
+					_matchDbContext.Games.UpdateRange([.. match.Games]);
+				}
+
+				await _matchDbContext.SaveChangesAsync();
+				await transaction.CommitAsync();
+            }
+            catch (Exception ex)
 			{
-				_matchDbContext.Matches.Update(match);
-				_matchDbContext.Games.UpdateRange([.. match.Games]);
+				await transaction.RollbackAsync();
+				throw;
 			}
 
-			await _matchDbContext.SaveChangesAsync();
-		}
+        }
 	}
 }
