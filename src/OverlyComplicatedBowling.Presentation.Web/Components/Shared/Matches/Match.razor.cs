@@ -20,12 +20,9 @@ namespace OverlyComplicatedBowling.Presentation.Web.Components.Shared.Matches
                 IsRolling = true;
                 var updatedMatch = await OverlyComplicatedBowlingService.AddRollAsync(matchId, gameId);
 
-                Match = new MatchDto
-                {
-                    Id = updatedMatch.Id,
-                    IdOfActiveGame = updatedMatch.IdOfActiveGame,
-                    Games = updatedMatch.Games.OrderBy(x => x.Index).ToList()
-                };
+                Match.IdOfActiveGame = updatedMatch.IdOfActiveGame;
+                Match.Games.Clear();
+                Match.Games.AddRange(updatedMatch.Games);
 
             }
             catch (Exception e)
