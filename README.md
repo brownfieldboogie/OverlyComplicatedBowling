@@ -1,4 +1,9 @@
 # OverlyComplicatedBowling
+A simple game of bowling, implemented more complicated than it needs to be (on purpose).
+Why? Bowling has just the right amount of rules and concepts to be simple to put into code, and still be complicated enough to easily over-engineer. That makes for a perfect playground for trying out different architectural decisions, logical components and technologies.
+
+Inspired by [this blogpost by Ron Jeffries](https://codingdojo.org/kata/Bowling/)
+
 ## To start
 Requires docker. Open your terminal, navigate to the repo, and execute:
 1. docker compose build
